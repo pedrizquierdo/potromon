@@ -52,6 +52,28 @@ public class Habilidad {
     public Potromon getProtomon() {
         return protomon;
     }
+    
+    public static List<Habilidad> getList(int idPotromon) {
+        List<Habilidad> habilidades = new ArrayList<>();
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "SELECT id, habilidad FROM habilidades WHERE potromon_id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setInt(1, idPotromon);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                Habilidad h = new Habilidad();
+                h.setId(rs.getInt(1));
+                h.setHabilidad(rs.getString(2));
+                
+                habilidades.add(h);
+                
+            }
+        } catch(Exception ex) {
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        } return habilidades;
+      
+    }
 
     /**
      * @param protomon the protomon to set

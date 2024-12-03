@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import mx.itson.fokemones.persistencia.Conexion;
 
@@ -132,12 +131,12 @@ public class Potromon {
      * @return Un objeto de tipo Servicio que contiene los datos del registro correspondiente.
      * Si no se encuentra el registro, se devuelve un objeto vacío con valores predeterminados.
      */
-    public static Potromones getById(int id){
+    public static Potromon getById(int id){
             Potromon p = new Potromon ();
         try {
             Connection conexion = Conexion.obtener();
             
-            String query = "SELECT id, nombre, descripcion, imagen, puntaje, entrenador_id, FROM Potromones WHERE id = ?";
+            String query = "SELECT id, nombre, descripcion, imagen, puntaje, entrenador_id FROM Potromones WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1, id);
             
@@ -162,16 +161,17 @@ public class Potromon {
      * @param descripcionProblema Dato de tipo String el cual es la descripcion del problema del servicio realizado
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(int Id, String Nombre, String Descripcion, int Puntaje) {
+    public static boolean save(String Nombre, String Descripcion, int idEntrenador, int puntaje) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO Potromones (Id, Nombre, Descripcion, Puntaje) VALUES (?, ?, ?,?)";
+                String consulta = "INSERT INTO Potromones (Nombre, Descripcion, entrenador_id, puntaje) VALUES (?, ?, ?, ?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
-                statement.setInt(1, Id);
-                statement.setString(2, Nombre);
-                statement.setString(3, Descripcion);
-                statement.setInt(4, Puntaje);
+                
+                statement.setString(1, Nombre);
+                statement.setString(2, Descripcion);
+                statement.setInt(3, idEntrenador);
+                statement.setInt(4, puntaje);
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
                 conexion.close();
@@ -190,16 +190,15 @@ public class Potromon {
      * @return la edicion de los elementos seleccionados del servicio especificado
      */
     
-    public static boolean edit(int Id,String Nombre, String Descripcion, int Puntaje) {
+    public static boolean edit(int id, int puntaje) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE Potromones SET Puntaje = ?, Nombre = ?, Descripcion = ? WHERE id = ?";
+                String consulta = "UPDATE potromones SET puntaje = puntaje + ? WHERE id = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
-                statement.setInt(1, Id);
-                statement.setString(2, Nombre);
-                statement.setString(3, Descripcion);
-                statement.setInt(4, Puntaje);
+                statement.setInt(1, puntaje);
+              
+                statement.setInt(2, id);
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
                 conexion.close();
@@ -239,7 +238,7 @@ public class Potromon {
         try {
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT Id, Nombre, Descripcion, Puntaje FROM Potromones");
+            ResultSet rs = statement.executeQuery("SELECT Id, Nombre, Descripcion, Puntaje, entrenador_id FROM Potromones");
             while(rs.next()) {
                 Potromon p = new Potromon ();
                 p.setId(rs.getInt(1));
@@ -249,14 +248,14 @@ public class Potromon {
                 
                 //Obtenemos un ejemplo de tipo responsable 
                 Entrenador e = Entrenador.getById(rs.getInt(5));
-                e.setEntrenador(e);
+                p.setEntrenadores(e);
                 
                 
                 //Obtenemos una lista de tipo Actividad
                 List<Habilidad> habilidades = Habilidad.getList(rs.getInt(1));
-                h.setHabilidades(habilidades);
+                p.setHabilidad(habilidades);
                 
-                habilidades.add(h);
+                potromones.add(p);
                 
             }
             

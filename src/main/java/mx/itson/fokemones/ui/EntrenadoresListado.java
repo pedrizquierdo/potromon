@@ -185,8 +185,10 @@ public class EntrenadoresListado extends javax.swing.JFrame {
     private void btnPotromonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotromonActionPerformed
 
         int renglon = tblEntrenadores.getSelectedRow();
-        int idServicio = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
+        int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
         
+        PotromonesListado potromonesListado = new PotromonesListado(idEntrenador);
+        potromonesListado.setVisible(true);
         
         
     }//GEN-LAST:event_btnPotromonActionPerformed
