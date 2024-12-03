@@ -5,6 +5,7 @@
 package mx.itson.fokemones.ui;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.fokemones.entities.Entrenador;
 
@@ -36,6 +37,7 @@ public class EntrenadoresListado extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnPotromon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
@@ -46,7 +48,7 @@ public class EntrenadoresListado extends javax.swing.JFrame {
         });
 
         tblEntrenadores.setAutoCreateRowSorter(true);
-        tblEntrenadores.setBackground(new java.awt.Color(255, 153, 153));
+        tblEntrenadores.setBackground(new java.awt.Color(153, 153, 153));
         tblEntrenadores.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 12)); // NOI18N
         tblEntrenadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,9 +81,21 @@ public class EntrenadoresListado extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 3, 24)); // NOI18N
         jLabel1.setText("ENTRENADORES POTROMONES");
+
+        btnPotromon.setText("Ver potromones del entrenador");
+        btnPotromon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPotromonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,22 +104,28 @@ public class EntrenadoresListado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar)
                         .addGap(60, 60, 60)
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(btnEliminar)))
                 .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPotromon)
+                .addGap(197, 197, 197))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addComponent(btnPotromon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
@@ -126,12 +146,50 @@ public class EntrenadoresListado extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        
+        EntrenadoresForm form = new EntrenadoresForm(this, true, 0);
+        form.setVisible(true);
+        
+        loadTable();
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        
+        int renglon = tblEntrenadores.getSelectedRow();
+        int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
+        
+        EntrenadoresForm form = new EntrenadoresForm(this, true, idEntrenador);
+         form.setVisible(true);
+        
+        loadTable();
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        int renglon = tblEntrenadores.getSelectedRow();
+        int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
+        
+        if (JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+        
+        if(Entrenador.delete(idEntrenador)){
+            JOptionPane.showMessageDialog(this, "El registro se eliminó con éxito", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
+            loadTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        } 
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnPotromonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotromonActionPerformed
+
+        int renglon = tblEntrenadores.getSelectedRow();
+        int idServicio = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
+        
+        
+        
+    }//GEN-LAST:event_btnPotromonActionPerformed
 
     private void loadTable(){
         List<Entrenador> entrenadores = Entrenador.getAll();
@@ -188,6 +246,7 @@ public class EntrenadoresListado extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnPotromon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEntrenadores;
