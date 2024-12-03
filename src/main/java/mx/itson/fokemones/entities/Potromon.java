@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author zBook
  */
-public class Potromones {
+public class Potromon {
 
     /**
      * @return the id
@@ -85,28 +85,28 @@ public class Potromones {
     /**
      * @return the entrenadores
      */
-    public Entrenadores getEntrenadores() {
+    public Entrenador getEntrenadores() {
         return entrenadores;
     }
 
     /**
      * @param entrenadores the entrenadores to set
      */
-    public void setEntrenadores(Entrenadores entrenadores) {
+    public void setEntrenadores(Entrenador entrenadores) {
         this.entrenadores = entrenadores;
     }
 
     /**
      * @return the habilidad
      */
-    public List<Habilidades> getHabilidad() {
+    public List<Habilidad> getHabilidad() {
         return habilidad;
     }
 
     /**
      * @param habilidad the habilidad to set
      */
-    public void setHabilidad(List<Habilidades> habilidad) {
+    public void setHabilidad(List<Habilidad> habilidad) {
         this.habilidad = habilidad;
     }
   private int id;
@@ -114,6 +114,6 @@ public class Potromones {
   private String descripcion;
   private String imagen;
   private int puntaje;
-  private Entrenadores entrenadores;
-  private List<Habilidades> habilidad;
+  private Entrenador entrenadores;
+  private List<Habilidad> habilidad;
 }

@@ -8,7 +8,7 @@ package mx.itson.fokemones.entities;
  *
  * @author zBook
  */
-public class Habilidades {
+public class Habilidad {
 
     /**
      * @return the id
@@ -41,18 +41,18 @@ public class Habilidades {
     /**
      * @return the protomon
      */
-    public Potromones getProtomon() {
+    public Potromon getProtomon() {
         return protomon;
     }
 
     /**
      * @param protomon the protomon to set
      */
-    public void setProtomon(Potromones protomon) {
+    public void setProtomon(Potromon protomon) {
         this.protomon = protomon;
     }
     private int id;
     private String habilidad;
-    private Potromones protomon;
+    private Potromon protomon;
 
 }
