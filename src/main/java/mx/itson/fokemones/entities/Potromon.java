@@ -60,19 +60,6 @@ public class Potromon {
         this.descripcion = descripcion;
     }
 
-    /**
-     * @return the imagen
-     */
-    public String getImagen() {
-        return imagen;
-    }
-
-    /**
-     * @param imagen the imagen to set
-     */
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
 
     /**
      * @return the puntaje
@@ -118,7 +105,7 @@ public class Potromon {
   private int id;
   private String nombre;
   private String descripcion;
-  private String imagen;
+  private byte[] imagen;
   private int puntaje;
   private Entrenador entrenadores;
   private List<Habilidad> habilidad;
@@ -238,16 +225,17 @@ public class Potromon {
         try {
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT Id, Nombre, Descripcion, Puntaje, entrenador_id FROM Potromones");
+            ResultSet rs = statement.executeQuery("SELECT Id, Nombre, Descripcion,Imagen, Puntaje, entrenador_id FROM Potromones");
             while(rs.next()) {
                 Potromon p = new Potromon ();
                 p.setId(rs.getInt(1));
                 p.setNombre(rs.getString(2));
                 p.setDescripcion(rs.getString(3));
-                p.setPuntaje(rs.getInt(4));
+                p.setImagen(rs.getBytes(4));
+                p.setPuntaje(rs.getInt(5));
                 
                 //Obtenemos un ejemplo de tipo responsable 
-                Entrenador e = Entrenador.getById(rs.getInt(5));
+                Entrenador e = Entrenador.getById(rs.getInt(6));
                 p.setEntrenadores(e);
                 
                 
@@ -259,9 +247,77 @@ public class Potromon {
                 
             }
             
+       
         } catch(Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());
         } return potromones; 
     } 
+
+    /**
+     * @return the imagen
+     */
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+    
+    public static boolean aggImage(int id, byte[] image){
+        boolean resultado = false;
+        try{
+            Connection conexion = Conexion.obtener();
+            String consulta = "UPDATE Potromones SET imagen = ? WHERE id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setBytes(1, image);
+            statement.setInt(2, id);
+            statement.execute();
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+        }catch (Exception ex){
+            System.err.println("Ocurrio un error al agregar una imagen " + ex.getMessage());
+        }
+        return resultado;
+    }
+    public static byte[] cargarImagen(int id){
+        byte[] image = null;
+        try{
+            Connection conexion =  Conexion.obtener();
+            String consulta = "SELECT imagen FROM potromones WHERE id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()){
+                image = rs.getBytes(1);
+            }
+            conexion.close();
+        } catch (Exception ex){
+            System.err.println("Ocurrio un error al cargar la imagen " + ex.getMessage());
+        }
+        return image;
+    }
+    public static boolean editImage(int id, byte[] newImage){
+        return aggImage(id, newImage);
+    }
+    public static boolean deleteImage(int id) {
+    boolean resultado = false;
+    try {
+        Connection conexion = Conexion.obtener();
+        String consulta = "UPDATE Potromones SET imagen = NULL WHERE id = ?";
+        PreparedStatement statement = conexion.prepareStatement(consulta);
+        statement.setInt(1, id);
+        statement.execute();
+        resultado = statement.getUpdateCount() == 1;
+        conexion.close();
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error al eliminar la imagen: " + ex.getMessage());
+    }
+    return resultado;
 }
+
+    }
 

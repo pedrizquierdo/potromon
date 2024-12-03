@@ -20,8 +20,8 @@ public class Conexion {
     public static Connection obtener(){
         Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/potromones?user=root&password=administrador");
-            System.out.println("conectada");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/potromones?user=root&password=admin");
+            
         } catch (Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());
         }

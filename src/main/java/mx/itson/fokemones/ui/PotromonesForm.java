@@ -4,6 +4,11 @@
  */
 package mx.itson.fokemones.ui;
 
+import java.awt.Image;
+import java.io.File;
+import java.nio.file.Files;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import mx.itson.fokemones.entities.Potromon;
 
@@ -42,12 +47,29 @@ public class PotromonesForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        aggImagen = new javax.swing.JButton();
+        jLabel = new javax.swing.JPanel();
+        jImagen = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,21 +87,54 @@ public class PotromonesForm extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setText("Agregar imagen");
+
+        aggImagen.setText("Imagen");
+        aggImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aggImagenActionPerformed(evt);
+            }
+        });
+
+        jLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), null));
+
+        javax.swing.GroupLayout jLabelLayout = new javax.swing.GroupLayout(jLabel);
+        jLabel.setLayout(jLabelLayout);
+        jLabelLayout.setHorizontalGroup(
+            jLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        );
+        jLabelLayout.setVerticalGroup(
+            jLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+        );
+
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnAceptar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNombre)
-                        .addComponent(txtDescripcion)))
-                .addContainerGap(339, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(aggImagen)
+                    .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,16 +142,25 @@ public class PotromonesForm extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aggImagen))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAceptar)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAceptar))
+                    .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +183,72 @@ public class PotromonesForm extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+
+private byte[] imagenData;
+    private void aggImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggImagenActionPerformed
+
+    // Crear un selector de archivos
+    JFileChooser fileChooser = new JFileChooser();
+    
+    // Filtrar solo imágenes (JPG, PNG, JPEG)
+    fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
+    
+    // Abrir el cuadro de diálogo de selección de archivo
+    int result = fileChooser.showOpenDialog(this);
+    
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File file = fileChooser.getSelectedFile(); // Obtener el archivo seleccionado
+        
+        try {
+            // Leer el archivo y almacenarlo en la variable imagenData
+            imagenData = Files.readAllBytes(file.toPath());
+            
+            // Convertir los bytes en un ImageIcon para mostrar la imagen
+            ImageIcon icon = new ImageIcon(imagenData);
+            
+            // Escalar la imagen al tamaño del JLabel
+            Image img = icon.getImage().getScaledInstance(jImagen.getWidth(), jImagen.getHeight(), Image.SCALE_SMOOTH);
+            jImagen.setIcon(new ImageIcon(img)); // Mostrar la imagen en el JLabel
+            
+            // Obtener el ID del Potromon desde un campo de texto (asegurarse de que sea un número)
+            int idPotromon;
+            try {
+                idPotromon = Integer.parseInt(txtId.getText()); // Asume que el campo de texto con el ID se llama txtId
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "El ID proporcionado no es válido.");
+                return;
+            }
+            
+            Potromon p = Potromon.getById(idPotromon); // Buscar el Potromon por ID
+            
+            if (p != null) {
+                p.setImagen(imagenData); // Asignar la imagen al objeto Potromon
+                
+                // Usar el método adecuado para guardar la imagen en la base de datos
+                boolean actualizado = Potromon.aggImage(idPotromon, imagenData); // Método que actualiza la imagen en la base de datos
+                
+                if (actualizado) {
+                    JOptionPane.showMessageDialog(this, "Imagen guardada correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al guardar la imagen.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El Potromon con el ID especificado no existe.");
+            }
+        } catch (Exception ex) {
+            // Mostrar un mensaje de error si ocurre algún problema
+            JOptionPane.showMessageDialog(this, "Error al cargar la imagen: " + ex.getMessage());
+        }
+    }
+
+
+
+    }//GEN-LAST:event_aggImagenActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,11 +293,17 @@ public class PotromonesForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aggImagen;
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jImagen;
+    private javax.swing.JPanel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
