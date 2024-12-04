@@ -170,11 +170,12 @@ public class Habilidad {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE habilidades SET int = ?, habilidad = ?, descripcion = ? WHERE id = ?";
+                String consulta = "UPDATE habilidades SET habilidad = ?, descripcion = ? WHERE id = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
-                statement.setInt(1, id);
-                statement.setString(2, habilidad);
-                statement.setString(3, descripcion);
+                
+                statement.setString(1, habilidad);
+                statement.setString(2, descripcion);
+                statement.setInt(3, id);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -211,7 +212,7 @@ public class Habilidad {
      * @param puesto Valor del puesto del responsable
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(String habilidad, String descripcion, int idPotromon) {
+    public static boolean save(String habilidad, String descripcion) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
@@ -220,7 +221,7 @@ public class Habilidad {
                 
                 statement.setString(1, habilidad);
                 statement.setString(2, descripcion);
-                statement.setInt(3, idPotromon);
+                
                 
                 
                 statement.execute();

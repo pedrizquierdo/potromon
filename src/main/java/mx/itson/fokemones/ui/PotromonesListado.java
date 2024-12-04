@@ -210,8 +210,8 @@ public class PotromonesListado extends javax.swing.JFrame {
         int renglon = tblPotromones.getSelectedRow();
         int idPotromon = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
         
-        HabilidadListado potromonesListado = new HabilidadListado(idPotromon);
-        potromonesListado.setVisible(true);
+        SuperPotroDex superPotroDex = new SuperPotroDex(idPotromon);
+        superPotroDex.setVisible(true);
         
         
     }//GEN-LAST:event_btnHabilidadesActionPerformed

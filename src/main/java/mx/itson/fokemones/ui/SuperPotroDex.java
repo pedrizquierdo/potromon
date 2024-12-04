@@ -4,17 +4,27 @@
  */
 package mx.itson.fokemones.ui;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.fokemones.entities.Entrenador;
+import mx.itson.fokemones.entities.Habilidad;
+
 /**
  *
  * @author PC AGRA
  */
 public class SuperPotroDex extends javax.swing.JFrame {
-
+  
+    private int idPotromon;
+    
     /**
      * Creates new form SuperPotroDex
      */
-    public SuperPotroDex() {
+    public SuperPotroDex(int IdPotromon) {
+        this.idPotromon = IdPotromon;
         initComponents();
+        loadTable(idPotromon);
     }
 
     /**
@@ -30,8 +40,8 @@ public class SuperPotroDex extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tblHabilidades = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -40,10 +50,17 @@ public class SuperPotroDex extends javax.swing.JFrame {
         labelDescripcion = new javax.swing.JLabel();
         labelEntrenador = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,29 +80,29 @@ public class SuperPotroDex extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 200));
 
-        jTable1.setBackground(new java.awt.Color(0, 153, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHabilidades.setBackground(new java.awt.Color(0, 153, 0));
+        tblHabilidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Habilidad", "Descripción"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblHabilidades);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 350, 240));
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 80, 40));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 80, 40));
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 51));
 
@@ -163,24 +180,103 @@ public class SuperPotroDex extends javax.swing.JFrame {
         jLabel5.setText("HABILIDADES");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 268, 38));
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 387, -1, 40));
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, -1, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        
+        int idHabilidad = 0;
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad);
+        form.setVisible(true);
+        
+        loadTable(idPotromon);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        loadTable(idPotromon);
+        tblHabilidades.removeColumn(tblHabilidades.getColumnModel().getColumn(0));
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
+        int renglon = tblHabilidades.getSelectedRow();
+        int idHabilidad = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
+        
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad);
+         form.setVisible(true);
+        
+        loadTable(idPotromon);
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        int renglon = tblHabilidades.getSelectedRow();
+        int idEntrenador = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
+        
+        if (JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+        
+        if(Entrenador.delete(idEntrenador)){
+            JOptionPane.showMessageDialog(this, "El registro se eliminó con éxito", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
+            loadTable(idPotromon);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void loadTable(int idPotromon){
+        
+        List<Habilidad> habilidades = Habilidad.getAll();
+        DefaultTableModel modeloTabla = (DefaultTableModel)tblHabilidades.getModel();
+        modeloTabla.setRowCount(0);
+        
+    
+        for(Habilidad h: habilidades) {
+            if(h.getProtomon().getId() == idPotromon) {
+            modeloTabla.addRow(new Object[] {
+            h.getId(),
+            h.getHabilidad(),    
+            h.getDescripción(),
+            
+               
+            });
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -211,13 +307,16 @@ public class SuperPotroDex extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuperPotroDex().setVisible(true);
+                int idPotromon = 1;
+                new SuperPotroDex(idPotromon).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -227,9 +326,9 @@ public class SuperPotroDex extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelEntrenador;
     private javax.swing.JLabel labelPuntuaje;
+    private javax.swing.JTable tblHabilidades;
     // End of variables declaration//GEN-END:variables
 }
