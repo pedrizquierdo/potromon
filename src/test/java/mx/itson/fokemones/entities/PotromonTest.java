@@ -56,7 +56,7 @@ public class PotromonTest {
     @Test
     public void testSetId() {
         System.out.println("setId");
-        int id = 0;
+        int id = 1;
         Potromon instance = new Potromon();
         instance.setId(id);
         
@@ -81,7 +81,7 @@ public class PotromonTest {
     @Test
     public void testSetNombre() {
         System.out.println("setNombre");
-        String nombre = "";
+        String nombre = "Palomyts";
         Potromon instance = new Potromon();
         instance.setNombre(nombre);
         
@@ -106,7 +106,7 @@ public class PotromonTest {
     @Test
     public void testSetDescripcion() {
         System.out.println("setDescripcion");
-        String descripcion = "";
+        String descripcion = "Potromon volador";
         Potromon instance = new Potromon();
         instance.setDescripcion(descripcion);
         
@@ -131,7 +131,7 @@ public class PotromonTest {
     @Test
     public void testSetPuntaje() {
         System.out.println("setPuntaje");
-        int puntaje = 0;
+        int puntaje = 100;
         Potromon instance = new Potromon();
         instance.setPuntaje(puntaje);
         
@@ -223,9 +223,9 @@ public class PotromonTest {
     @Test
     public void testEdit() {
         System.out.println("edit");
-        int id = 0;
-        int puntaje = 0;
-        boolean expResult = false;
+        int id = 2;
+        int puntaje = 50;
+        boolean expResult = true;
         boolean result = Potromon.edit(id, puntaje);
         assertEquals(expResult, result);
         
@@ -328,8 +328,8 @@ public class PotromonTest {
     @Test
     public void testDeleteImage() {
         System.out.println("deleteImage");
-        int id = 0;
-        boolean expResult = false;
+        int id = 2;
+        boolean expResult = true;
         boolean result = Potromon.deleteImage(id);
         assertEquals(expResult, result);
         
