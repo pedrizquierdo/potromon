@@ -111,12 +111,14 @@ public class Habilidad {
         try {
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, habilidad, descripcion FROM habilidades");
+            ResultSet rs = statement.executeQuery("SELECT id, habilidad, descripcion, potromon_id FROM habilidades");
             while(rs.next()) {
                 Habilidad h = new Habilidad();
                 h.setId(rs.getInt(1));
                 h.setHabilidad(rs.getString(2));
                 h.setDescripción(rs.getString(3));
+                Potromon p = Potromon.getById(rs.getInt(4));
+                h.setProtomon(p);
                 habilidades.add(h);
             }
         } catch (Exception ex) {
@@ -139,7 +141,7 @@ public class Habilidad {
         try {
             Connection conexion = Conexion.obtener();
             
-            String query = "SELECT id, habilidad, descripcion FROM habilidades WHERE id = ?";
+            String query = "SELECT id, habilidad, descripcion, potromon_id FROM habilidades WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1, id);
             
@@ -209,15 +211,17 @@ public class Habilidad {
      * @param puesto Valor del puesto del responsable
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(int id, String habilidad, String descripcion) {
+    public static boolean save(String habilidad, String descripcion, int idPotromon) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO habilidades (id, habilidad, descripcion) VALUES (?, ?, ?)";
+                String consulta = "INSERT INTO habilidades (habilidad, descripcion, potromon_id) VALUES (?, ?, ?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
-                statement.setInt(1, id);
-                statement.setString(2, habilidad);
-                statement.setString(3, descripcion);
+                
+                statement.setString(1, habilidad);
+                statement.setString(2, descripcion);
+                statement.setInt(3, idPotromon);
+                
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;

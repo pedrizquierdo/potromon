@@ -4,18 +4,32 @@
  */
 package mx.itson.fokemones.ui;
 
+import javax.swing.JOptionPane;
+import mx.itson.fokemones.entities.Habilidad;
+import mx.itson.fokemones.entities.Potromon;
+
 /**
  *
  * @author pedrizquierdo
  */
 public class HabilidadForm extends javax.swing.JDialog {
 
+    
+    int id;
+    private int idPotromon;
     /**
      * Creates new form HabilidadForm
      */
-    public HabilidadForm(java.awt.Frame parent, boolean modal) {
+    public HabilidadForm(java.awt.Frame parent, boolean modal, int id, int IdPotromon) {
         super(parent, modal);
         initComponents();
+        this.idPotromon = IdPotromon;
+        this.id = id;
+        if(id != 0){
+            Habilidad h = Habilidad.getById(id);
+            txtHabilidad.setText(h.getHabilidad());           
+            txtDescripcion.setText(h.getDescripción());                      
+        }
     }
 
     /**
@@ -32,6 +46,7 @@ public class HabilidadForm extends javax.swing.JDialog {
         txtHabilidad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,6 +58,13 @@ public class HabilidadForm extends javax.swing.JDialog {
         txtHabilidad.setToolTipText("");
 
         jLabel3.setText("Descripción:");
+
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,7 +83,10 @@ public class HabilidadForm extends javax.swing.JDialog {
                             .addComponent(txtHabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(247, 247, 247)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(btnAceptar)))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,11 +102,30 @@ public class HabilidadForm extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAceptar)
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        String habilidad = txtHabilidad.getText();
+        String descripcion = txtDescripcion.getText();
+       
+        
+        boolean resultado = Habilidad.save(habilidad, descripcion, idPotromon);
+        
+        if(resultado) {
+            JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro Guardado", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar guardar el registro", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,7 +157,7 @@ public class HabilidadForm extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HabilidadForm dialog = new HabilidadForm(new javax.swing.JFrame(), true);
+                HabilidadForm dialog = new HabilidadForm(new javax.swing.JFrame(), true, 0, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -126,6 +170,7 @@ public class HabilidadForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
