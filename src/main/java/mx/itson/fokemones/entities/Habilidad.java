@@ -166,16 +166,17 @@ public class Habilidad {
      * @param puesto es un string el cual es el puesto del responsable especificado
      * @return la edicion de los elementos seleccionados del responsable especificado
      */
-    public static boolean edit(int id, String habilidad, String descripcion) {
+    public static boolean edit(int id, String habilidad, String descripcion, int idPotromon) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE habilidades SET habilidad = ?, descripcion = ? WHERE id = ?";
+                String consulta = "UPDATE habilidades SET habilidad = ?, descripcion = ?, potromon_id = ? WHERE id = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 
                 statement.setString(1, habilidad);
                 statement.setString(2, descripcion);
-                statement.setInt(3, id);
+                statement.setInt(3, idPotromon);
+                statement.setInt(4, id);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;

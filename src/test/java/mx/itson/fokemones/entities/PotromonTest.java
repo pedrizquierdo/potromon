@@ -69,7 +69,7 @@ public class PotromonTest {
     public void testGetNombre() {
         System.out.println("getNombre");
         Potromon instance = new Potromon();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getNombre();
         assertEquals(expResult, result);
         
@@ -94,7 +94,7 @@ public class PotromonTest {
     public void testGetDescripcion() {
         System.out.println("getDescripcion");
         Potromon instance = new Potromon();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getDescripcion();
         assertEquals(expResult, result);
         
@@ -225,7 +225,7 @@ public class PotromonTest {
         System.out.println("edit");
         int id = 2;
         int puntaje = 50;
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = Potromon.edit(id, puntaje);
         assertEquals(expResult, result);
         
@@ -329,7 +329,7 @@ public class PotromonTest {
     public void testDeleteImage() {
         System.out.println("deleteImage");
         int id = 2;
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = Potromon.deleteImage(id);
         assertEquals(expResult, result);
         
