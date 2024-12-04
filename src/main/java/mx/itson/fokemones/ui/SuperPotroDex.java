@@ -4,11 +4,16 @@
  */
 package mx.itson.fokemones.ui;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.ImageIcon;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mx.itson.fokemones.entities.Entrenador;
+
 import mx.itson.fokemones.entities.Habilidad;
+import mx.itson.fokemones.entities.Potromon;
 
 /**
  *
@@ -39,6 +44,7 @@ public class SuperPotroDex extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jImagenDex = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHabilidades = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
@@ -71,11 +77,11 @@ public class SuperPotroDex extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addComponent(jImagenDex, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addComponent(jImagenDex, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 200));
@@ -108,17 +114,14 @@ public class SuperPotroDex extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Entrenador:");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Descripcion:");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Puntuaje:");
 
         labelPuntuaje.setBackground(new java.awt.Color(0, 0, 0));
@@ -176,7 +179,6 @@ public class SuperPotroDex extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("HABILIDADES");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 268, 38));
 
@@ -212,6 +214,8 @@ public class SuperPotroDex extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
         int idHabilidad = 0;
@@ -222,9 +226,14 @@ public class SuperPotroDex extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        
+        Potromon selectPotromon = Potromon.getById(idPotromon);
+        byte[] imageBytes = selectPotromon.getImagen();
+        Image image = Toolkit.getDefaultToolkit().createImage(imageBytes);
+        ImageIcon potroImage = new ImageIcon(image.getScaledInstance(jImagenDex.getWidth(), jImagenDex.getHeight(), Image.SCALE_SMOOTH));
         loadTable(idPotromon);
         tblHabilidades.removeColumn(tblHabilidades.getColumnModel().getColumn(0));
+        jImagenDex.setIcon(potroImage);
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -256,7 +265,8 @@ public class SuperPotroDex extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    
+    
     private void loadTable(int idPotromon){
         
         List<Habilidad> habilidades = Habilidad.getAll();
@@ -317,6 +327,7 @@ public class SuperPotroDex extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel jImagenDex;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
