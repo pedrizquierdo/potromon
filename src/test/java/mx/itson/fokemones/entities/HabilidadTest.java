@@ -56,7 +56,7 @@ public class HabilidadTest {
     @Test
     public void testSetDescripción() {
         System.out.println("setDescripcion");
-        String descripción = "Tirar lava por la boca";
+        String descripción = "Potromon peligroso salvaje";
         Habilidad instance = new Habilidad();
         instance.setDescripción(descripción);
         
@@ -106,7 +106,7 @@ public class HabilidadTest {
     @Test
     public void testSetHabilidad() {
         System.out.println("setHabilidad");
-        String habilidad = "";
+        String habilidad = "Tirar lava por la boca";
         Habilidad instance = new Habilidad();
         instance.setHabilidad(habilidad);
         
@@ -181,10 +181,10 @@ public class HabilidadTest {
     @Test
     public void testEdit() {
         System.out.println("edit");
-        int id = 0;
-        String habilidad = "";
-        String descripcion = "";
-        boolean expResult = false;
+        int id = 1;
+        String habilidad = "Tirar lava por la boca";
+        String descripcion = "Potromon peligroso salvaje";
+        boolean expResult = true;
         boolean result = Habilidad.edit(id, habilidad, descripcion);
         assertEquals(expResult, result);
         
@@ -196,8 +196,8 @@ public class HabilidadTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        int id = 0;
-        boolean expResult = false;
+        int id = 2;
+        boolean expResult = true;
         boolean result = Habilidad.delete(id);
         assertEquals(expResult, result);
         
@@ -209,9 +209,9 @@ public class HabilidadTest {
     @Test
     public void testSave() {
         System.out.println("save");
-        String habilidad = "";
-        String descripcion = "";
-        int idPotromon = 0;
+        String habilidad = "Control de la gravedad";
+        String descripcion = "Potromon pequeño pasivo, pero extremadamente peligroso";
+        int idPotromon = 3;
         boolean expResult = false;
         boolean result = Habilidad.save(habilidad, descripcion, idPotromon);
         assertEquals(expResult, result);
