@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mx.itson.fokemones.entities.Entrenador;
 
 import mx.itson.fokemones.entities.Habilidad;
 import mx.itson.fokemones.entities.Potromon;
@@ -22,14 +23,16 @@ import mx.itson.fokemones.entities.Potromon;
 public class PotroDex extends javax.swing.JFrame {
   
     private int idPotromon;
-    
+    private int idEntrenador;
     /**
      * Creates new form SuperPotroDex
      */
-    public PotroDex(int IdPotromon) {
+    public PotroDex(int IdPotromon, int IdEntrenador) {
         this.idPotromon = IdPotromon;
+        this.idEntrenador = IdEntrenador;
         initComponents();
         loadTable(idPotromon);
+        setTrainerLabel(idEntrenador);
     }
 
     /**
@@ -52,9 +55,9 @@ public class PotroDex extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        labelPuntuaje = new javax.swing.JLabel();
-        labelDescripcion = new javax.swing.JLabel();
-        labelEntrenador = new javax.swing.JLabel();
+        lblPuntaje = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        lblEntrenador = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -126,11 +129,11 @@ public class PotroDex extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("Puntuaje:");
 
-        labelPuntuaje.setBackground(new java.awt.Color(0, 0, 0));
+        lblPuntaje.setBackground(new java.awt.Color(0, 0, 0));
 
-        labelDescripcion.setBackground(new java.awt.Color(0, 0, 0));
+        lblDescripcion.setBackground(new java.awt.Color(0, 0, 0));
 
-        labelEntrenador.setBackground(new java.awt.Color(0, 0, 0));
+        lblEntrenador.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -142,25 +145,26 @@ public class PotroDex extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelPuntuaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblPuntaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelEntrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblEntrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+                        .addComponent(lblDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(labelEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3))
+                    .addComponent(lblEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -170,10 +174,10 @@ public class PotroDex extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addComponent(labelPuntuaje, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(labelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -232,6 +236,9 @@ public class PotroDex extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
+        setTrainerLabel(idEntrenador);
+        setPotromonLabel(idPotromon);
+        
         Potromon selectPotromon = Potromon.getById(idPotromon);
         byte[] imageBytes = selectPotromon.getImagen();
         Image image = Toolkit.getDefaultToolkit().createImage(imageBytes);
@@ -270,6 +277,21 @@ public class PotroDex extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
+    
+    private void setTrainerLabel(int idEntrenador) {
+    
+        Entrenador e = Entrenador.getById(idEntrenador);
+        lblEntrenador.setText(e.getNombre());
+ 
+    }
+    
+    private void setPotromonLabel(int idPotromon) {
+    
+        Potromon p = Potromon.getById(idPotromon);
+        lblDescripcion.setText(p.getDescripcion());
+        lblPuntaje.setText(String.valueOf(p.getPuntaje()));
+ 
+    }
     
     
     private void loadTable(int idPotromon){
@@ -324,7 +346,8 @@ public class PotroDex extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int idPotromon = 1;
-                new PotroDex(idPotromon).setVisible(true);
+                int idEntrenador = 1;
+                new PotroDex(idPotromon, idEntrenador).setVisible(true);
             }
         });
     }
@@ -343,9 +366,9 @@ public class PotroDex extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelDescripcion;
-    private javax.swing.JLabel labelEntrenador;
-    private javax.swing.JLabel labelPuntuaje;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblEntrenador;
+    private javax.swing.JLabel lblPuntaje;
     private javax.swing.JTable tblHabilidades;
     // End of variables declaration//GEN-END:variables
 }
