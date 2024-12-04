@@ -110,20 +110,27 @@ public class HabilidadForm extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    /**
+     * Method that is executed when the Accept button is pressed.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        // Obtener la habilidad ingresada en el campo de texto
         String habilidad = txtHabilidad.getText();
+        // Obtener la descripción ingresada en el campo de texto
         String descripcion = txtDescripcion.getText();
-       
+       // Guardar o editar la habilidad según el valor de this.id
         boolean resultado = this.id == 0 ?
                 Habilidad.save(habilidad, descripcion, idPotromon):
                 Habilidad.edit(id, habilidad, descripcion, idPotromon);
         
-        
+        // Mostrar un mensaje según el resultado de la operación
         if(resultado) {
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro Guardado", JOptionPane.INFORMATION_MESSAGE);
+            // Cerrar la ventana actual
             dispose();
+            // Mostrar un mensaje de error si ocurrió un problema al guardar el registro
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar guardar el registro", "Error al guardar", JOptionPane.ERROR_MESSAGE);
         }

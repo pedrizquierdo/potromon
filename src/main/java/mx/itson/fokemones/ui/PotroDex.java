@@ -19,14 +19,14 @@ import mx.itson.fokemones.entities.Potromon;
  *
  * @author PC AGRA
  */
-public class SuperPotroDex extends javax.swing.JFrame {
+public class PotroDex extends javax.swing.JFrame {
   
     private int idPotromon;
     
     /**
      * Creates new form SuperPotroDex
      */
-    public SuperPotroDex(int IdPotromon) {
+    public PotroDex(int IdPotromon) {
         this.idPotromon = IdPotromon;
         initComponents();
         loadTable(idPotromon);
@@ -309,21 +309,22 @@ public class SuperPotroDex extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SuperPotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SuperPotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SuperPotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SuperPotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PotroDex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int idPotromon = 1;
-                new SuperPotroDex(idPotromon).setVisible(true);
+                new PotroDex(idPotromon).setVisible(true);
             }
         });
     }

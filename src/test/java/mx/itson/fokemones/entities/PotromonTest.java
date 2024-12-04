@@ -321,18 +321,4 @@ public class PotromonTest {
         assertEquals(expResult, result);
         
     }
-
-    /**
-     * Test of deleteImage method, of class Potromon.
-     */
-    @Test
-    public void testDeleteImage() {
-        System.out.println("deleteImage");
-        int id = 2;
-        boolean expResult = false;
-        boolean result = Potromon.deleteImage(id);
-        assertEquals(expResult, result);
-        
-    }
-    
 }

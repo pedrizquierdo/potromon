@@ -121,7 +121,9 @@ public class HabilidadListado extends javax.swing.JFrame {
         tblHabilidades.removeColumn(tblHabilidades.getColumnModel().getColumn(0));
         
     }//GEN-LAST:event_formWindowOpened
-
+    /**
+     *Method that is executed when the Add button is pressed.
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         int idHabilidad = 0;

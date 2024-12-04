@@ -64,7 +64,7 @@ public class Entrenador {
     private String apodo;
 
 /**
-     * this seccion of code is used to select everything inside of "Responsable"
+     * this seccion of code is used to select everything inside of "Entrenador"
      * in the database
      * @return All the data selected from the database
      */   
@@ -88,13 +88,13 @@ public class Entrenador {
     }
     
     /**
-      * In this seccion of code is used to get the ID of the especific "Responsable"
-     * el id del responsable nombre del responsable y puesto del responsable especificado
-     * @param id es un int el cual es el id del responsable espesifcado
-     * @param nombre es un string el cual es el nombre del responsable especificado
-     * @param puesto es un string el cual es el puesto asigado del responsable especificado
-     * @return Un objeto de tipo Responsable que contiene los datos del registro correspondiente.
-     * Si no se encuentra el registro, se devuelve un objeto vacío con valores predeterminados.
+      * In this seccion of code is used to get the ID of the especific "Entrenadro".
+     * The id of "responsable" name of "Entrenador" and the position of the especific "Entrenador".
+     * @param id Is an INT which is the id of the especific "Entrenador".
+     * @param nombre Is a String which is the name of the especific "Entrenador".
+     * @param puesto Is a String which is the assigned position of the especific "Entrenador".
+     * @return An object of type "Entrenador" That contains the data of the corresponding record.
+     * If the record is not found, an empty object with default values is returned.
      */
     public static Entrenador getById(int id){
         Entrenador e = new Entrenador ();
@@ -121,12 +121,12 @@ public class Entrenador {
     
     
     /**
-     * Aqui esta seccion de codigo sirve para poder editar desde nuestro programa, la base de datos y poder 
-     * modificar toda la tabla de Responsable
-     * @param id es un int el cual es el identificador unico del responsable
-     * @param nombre es un string el cual es el nombre del responsable especificado
-     * @param puesto es un string el cual es el puesto del responsable especificado
-     * @return la edicion de los elementos seleccionados del responsable especificado
+     * This section of code allows us to edit the database from our program 
+     * and modify the entire "Entrenador" table.
+     * @param id This is an Int which is the unique identifier of the "Entrenador".
+     * @param nombre Is a String which is the unique identifier of the "Entrenador".
+     * @param puesto Is a String which is the especific position of the "Entrenador".
+     * @return The editing of the selected elements of the specified "entrenador".
      */
     public static boolean edit(int id,String nombre, String apodo) {
         boolean resultado = false;
@@ -146,9 +146,9 @@ public class Entrenador {
         }return resultado;
     } 
     /**
-     * En esta seccion de codigo se elimina el id especifico seleccionado de nuestra base de datos
-     * @param id es un int el cual es el identificador unico de nuestro responsable especificado
-     * @return La eliminacion del identificador unico de nuestro responsable especificado
+     * In this part of the code deletes the selected especific id from our database.
+     * @param id This is an INT which is the unique identifier of our especific "Entrenador".
+     * @return The deleted unique identifier of our especific "Entrenador".
      */
     
     public static boolean delete(int id) {
@@ -168,10 +168,10 @@ public class Entrenador {
         }return resultado;
     } 
     /**
-     * Guarda un registro de responsable en la base de datos
-     * @param nombre Valor del nombre del responsable
-     * @param puesto Valor del puesto del responsable
-     * @return true si se guardo exitosamente ; de lo contrario, false.
+     * Saves a data of our "entrenador" in the database.
+     * @param nombre Value of the "Entrenador" name.
+     * @param puesto Value of the "Entrenador" position.
+     * @return True if it was successfully saved; otherwise, false.
      */
     public static boolean save(String nombre, String apodo) {
         boolean resultado = false;

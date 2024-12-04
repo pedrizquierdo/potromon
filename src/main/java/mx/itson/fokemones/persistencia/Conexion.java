@@ -13,9 +13,9 @@ import java.sql.DriverManager;
  */
 public class Conexion {
     /**
-     * Encargado de conectar la base de datos a consultar.
-     * @return la conexion al programa.
-     * Se muestra Null por default.
+     * Responsible for connecting the database for querying
+     * @return The connection to the program.
+     * Null is shown by default.
      */
     public static Connection obtener(){
         Connection conexion = null;

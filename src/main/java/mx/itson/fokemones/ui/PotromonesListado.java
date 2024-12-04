@@ -204,13 +204,15 @@ public class PotromonesListado extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * 
+     */
     private void btnHabilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilidadesActionPerformed
 
         int renglon = tblPotromones.getSelectedRow();
         int idPotromon = Integer.parseInt(tblPotromones.getModel().getValueAt(renglon, 0).toString());
         
-        SuperPotroDex superPotroDex = new SuperPotroDex(idPotromon);
+        PotroDex superPotroDex = new PotroDex(idPotromon);
         superPotroDex.setVisible(true);
         
         

@@ -110,13 +110,13 @@ public class Potromon {
   private Entrenador entrenadores;
   private List<Habilidad> habilidad;
       /**
-     * En esta seccion de codigo se utiliza para poder obtener el id del servicio en especifico
-     * la fecha de realizacion y la descripcion del problema del servicio
-     * @param id es un int el cual es el id del servicio
-     * @param fecha_realizacion es un dato tipo date el cual es la fecha que se realizo el servicio
-     * @param descripcion_problema es un dato tipo string el cual es la descripcion del problema del servicio realizado
-     * @return Un objeto de tipo Servicio que contiene los datos del registro correspondiente.
-     * Si no se encuentra el registro, se devuelve un objeto vacío con valores predeterminados.
+     *  In this seccion of code is used to get the ID of the especific "Potromon".
+     * The id of "responsable" name of "Potromon" and the position of the especific "Potromon".
+     * @param id Is an INT which is the id of the especific "Potromon".
+     * @param nombre Is a String which is the name of the especific "Potromon".
+     * @param puesto Is a String which is the assigned position of the especific "Potromon".
+     * @return An object of type "Potron" That contains the data of the corresponding record.
+     * If the record is not found, an empty object with default values is returned.
      */
    public static Potromon getById(int id) {
     Potromon p = new Potromon();
@@ -131,7 +131,7 @@ public class Potromon {
             p.setId(rs.getInt(1));
             p.setNombre(rs.getString(2));
             p.setDescripcion(rs.getString(3));
-            p.setImagen(rs.getBytes(4)); // Cargar la imagen como bytes
+            p.setImagen(rs.getBytes(4)); // Load the image as a Bytes
             p.setPuntaje(rs.getInt(5));
         }
     } catch (Exception ex) {
@@ -141,11 +141,11 @@ public class Potromon {
 }
 
       /**
-     * Guarda un registro de Servicio en la base de datos
-     * @param fecha dato de tipo date el cual es la fecha de realizacion del servicio
-     * @param idResponsable Dato de tipo int el cual es el identificador unico del responsable que realizo el servicio
-     * @param descripcionProblema Dato de tipo String el cual es la descripcion del problema del servicio realizado
-     * @return true si se guardo exitosamente ; de lo contrario, false.
+     * Stores a service record in the database.
+     * @param fecha A date type data which is the date the service was performed.
+     * @param idResponsable An int type data which is the unique identifier of the person responsible for performing the service.
+     * @param descripcionProblema A String type data which is the description of the service problem.
+     * @return true if saved successfully; otherwise, false
      */
     public static boolean save(String nombre, String descripcion, byte[] imagen, int idEntrenador, int puntaje) {
     boolean resultado = false;
@@ -168,13 +168,12 @@ public class Potromon {
     }
     return resultado;    
     }
-        /**
-     * Aqui esta seccion de codigo sirve para poder editar desde nuestro programa, la base de datos y poder 
-     * modificar toda la tabla de Servicio
-     * @param fecha dato de tipo date el cual es la fecha de realizacion del servicio
-     * @param idResponsable Dato de tipo int el cual es el identificador unico del responsable que realizo el servicio
-     * @param descripcionProblema Dato de tipo String el cual es la descripcion del problema del servicio realizado
-     * @return la edicion de los elementos seleccionados del servicio especificado
+     /**
+     * This section of code allows us to edit the database from our program and modify the entire 'Servicio' table.
+     * @param fecha A date type data, which is the date the service was performed.
+     * @param idResponsable An int type data, which is the unique identifier of the person responsible for performing the service.
+     * @param descripcionProblema A String type data, which is the description of the service problem.
+     * @return The editing of the selected elements of the specified service.  
      */
     
     public static boolean edit(int id, int puntaje) {
@@ -194,9 +193,9 @@ public class Potromon {
         }return resultado;
     } 
      /**
-     * En esta seccion de codigo se elimina el id especifico seleccionado de nuestra base de datos
-     * @param idServicio es un int el cual es el identificador unico de nuestro servicio especificado
-     * @return La eliminacion del identificador unico de nuestro servicio especificado
+     * In this section of code the selected specific ID is deleted from our database.
+     * @param idServicio An int which is the unique identifier of the specified service.
+     * @return The deletion of the unique identifier of the specified service.
      */
     public static boolean delete(int Id) {
         boolean resultado = false;
@@ -216,9 +215,8 @@ public class Potromon {
     } 
     
      /**
-     * Esta seccion de codigo se usa para poder seleccionar todo lo que este dentro de "Servicio"
-     * En la base de datos
-     * @return todos los datos seleccionados de la base de datos
+     * This section of code is used to select everything within "Potromon" in the database     
+     * @return All the data selected from the database.
      */   
     public static List<Potromon> getAll (){
         List<Potromon> potromones = new ArrayList<>();
@@ -234,12 +232,12 @@ public class Potromon {
                 p.setImagen(rs.getBytes(4));
                 p.setPuntaje(rs.getInt(5));
                 
-                //Obtenemos un ejemplo de tipo responsable 
+                //We obtain an example of a 'Entrenador' type.
                 Entrenador e = Entrenador.getById(rs.getInt(6));
                 p.setEntrenadores(e);
                 
                 
-                //Obtenemos una lista de tipo Actividad
+                //We obtain a list of 'Habilidades' type.
                 List<Habilidad> habilidades = Habilidad.getList(rs.getInt(1));
                 p.setHabilidad(habilidades);
                 
@@ -266,7 +264,12 @@ public class Potromon {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
-    
+    /**
+     * This method is used to update the image of a Potromon in the database.
+     * @param id An int that represents the unique identifier of the Potromon to which the new image will be assigned.
+     * @param imageA byte array that contains the binary data of the image to be stored.
+     * @return True if the image has been successfully added, otherwise false.
+     */
     public static boolean aggImage(int id, byte[] image){
         boolean resultado = false;
         try{
@@ -283,6 +286,11 @@ public class Potromon {
         }
         return resultado;
     }
+    /**
+     * This method is used to load the image associated with a Potromon from the database.
+     * @param id An int that represents the unique identifier of the Potromon whose image is to be loaded.
+     * @return True if the image has been successfully updated otherwise false.
+     */
     public static byte[] cargarImagen(int id){
         byte[] image = null;
         try{
@@ -300,24 +308,15 @@ public class Potromon {
         }
         return image;
     }
+    /**
+     * This method is used to edit the image of a Potromon in the database.
+     * @param id An int representing the unique identifier of the Potromon whose image is to be edited.
+     * @param newImage A byte array containing the binary data of the new image.
+     * @return True if the image has been successfully updated, otherwise false.
+     */
     public static boolean editImage(int id, byte[] newImage){
         return aggImage(id, newImage);
     }
-    public static boolean deleteImage(int id) {
-    boolean resultado = false;
-    try {
-        Connection conexion = Conexion.obtener();
-        String consulta = "UPDATE Potromones SET imagen = NULL WHERE id = ?";
-        PreparedStatement statement = conexion.prepareStatement(consulta);
-        statement.setInt(1, id);
-        statement.execute();
-        resultado = statement.getUpdateCount() == 1;
-        conexion.close();
-    } catch (Exception ex) {
-        System.err.println("Ocurrió un error al eliminar la imagen: " + ex.getMessage());
-    }
-    return resultado;
-}
 
     }
 

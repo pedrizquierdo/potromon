@@ -172,40 +172,64 @@ public class PotromonesForm extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * 
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        String nombre = txtNombre.getText();
-    String descripcion = txtDescripcion.getText();
-    int puntaje = 0;
+       // Get the name entered in the text field
+    String name = txtNombre.getText();
 
-    boolean resultado = Potromon.save(nombre, descripcion, imagenData, idEntrenador, puntaje);
+    // Get the description entered in the text field
+    String description = txtDescripcion.getText();
 
-    if (resultado) {
-        JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro Guardado", JOptionPane.INFORMATION_MESSAGE);
+    // Initialize the score to 0
+    int score = 0;
+
+    // Save the Potromon with the provided data
+    boolean result = Potromon.save(name, description, imagenData, idEntrenador, score);
+
+    // Show a message based on the result of the operation
+    if (result) {
+        // Show a success message if the record was saved correctly
+        JOptionPane.showMessageDialog(this, "The record was saved successfully", "Record Saved", JOptionPane.INFORMATION_MESSAGE);
+
+        // Close the current window
         dispose();
     } else {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar guardar el registro", "Error al guardar", JOptionPane.ERROR_MESSAGE);
+        // Show an error message if there was a problem saving the record
+        JOptionPane.showMessageDialog(this, "An error occurred while trying to save the record", "Error Saving", JOptionPane.ERROR_MESSAGE);
     }
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-
-private byte[] imagenData;
+    /**
+     *Variable to store image data in byte format.
+     */
+    private byte[] imagenData;
+    
+    
+    /**
+     *Method that is executed when the Add Image button is pressed.
+     */
     private void aggImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggImagenActionPerformed
-
+    // Create a file choose
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
-
-    int result = fileChooser.showOpenDialog(this);
+       
+    
+        // Show the file selection dialog and get the result
+        int result = fileChooser.showOpenDialog(this);
 
     if (result == JFileChooser.APPROVE_OPTION) {
         File file = fileChooser.getSelectedFile();
         try {
-            // Convertir la imagen seleccionada a un arreglo de bytes
-            imagenData = Files.readAllBytes(file.toPath());
+                
+                // Show the file selection dialog and get the result
+                imagenData = Files.readAllBytes(file.toPath());
 
-            // Mostrar la imagen en el JLabel
+            // Display the image in the JLabel
             ImageIcon icon = new ImageIcon(imagenData);
             Image scaledImage = icon.getImage().getScaledInstance(jImagen.getWidth(), jImagen.getHeight(), Image.SCALE_SMOOTH);
             jImagen.setIcon(new ImageIcon(scaledImage));
