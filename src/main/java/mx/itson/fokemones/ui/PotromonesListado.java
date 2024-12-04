@@ -82,7 +82,7 @@ public class PotromonesListado extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setText("Editar");
+        btnEditar.setText("Editar Puntaje");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -96,7 +96,7 @@ public class PotromonesListado extends javax.swing.JFrame {
             }
         });
 
-        btnHabilidades.setText("Ver habilidades de este potromon");
+        btnHabilidades.setText("Ver PotroDex de este potromon");
         btnHabilidades.setToolTipText("");
         btnHabilidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class PotromonesListado extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAgregar)
-                        .addGap(164, 164, 164)
+                        .addGap(147, 147, 147)
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEliminar)))
