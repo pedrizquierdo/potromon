@@ -78,7 +78,12 @@ public class Habilidad {
     private Potromon protomon;
     private String descripción;
        
-    
+     /**
+    * Method to retrieve a list of abilities associated with a Potromon by its ID.
+    *
+    * @param idPotromon The ID of the Potromon.
+    * @return A list of Habilidad objects with the data retrieved from the database.
+    */
     public static List<Habilidad> getList(int idPotromon) {
         List<Habilidad> habilidades = new ArrayList<>();
         try {
@@ -102,10 +107,10 @@ public class Habilidad {
       
     }
     /**
-     * Esta seccion de codigo se usa para poder seleccionar todo lo que este dentro de "Responsable"
-     * En la base de datos
-     * @return todos los datos seleccionados de la base de datos
-     */   
+    * Method to retrieve a list of all abilities from the database.
+    *
+    * @return A list of Habilidad objects with the data retrieved from the database.
+    */  
     public static List<Habilidad> getAll() {
         List<Habilidad> habilidades = new ArrayList<>();
         try {
@@ -128,14 +133,11 @@ public class Habilidad {
     }
     
     /**
-      * En esta seccion de codigo se utiliza para poder obtener el id del responsable en especifico
-     * el id del responsable nombre del responsable y puesto del responsable especificado
-     * @param id es un int el cual es el id del responsable espesifcado
-     * @param nombre es un string el cual es el nombre del responsable especificado
-     * @param puesto es un string el cual es el puesto asigado del responsable especificado
-     * @return Un objeto de tipo Responsable que contiene los datos del registro correspondiente.
-     * Si no se encuentra el registro, se devuelve un objeto vacío con valores predeterminados.
-     */
+    * Method to retrieve an ability by its ID.
+    *
+    * @param id The ID of the ability to search for.
+    * @return A Habilidad object with the data retrieved from the database.
+    */
     public static Habilidad getById(int id){
         Habilidad h = new Habilidad ();
         try {
@@ -158,14 +160,15 @@ public class Habilidad {
         return h;
     }
     
-     /**
-     * Aqui esta seccion de codigo sirve para poder editar desde nuestro programa, la base de datos y poder 
-     * modificar toda la tabla de Responsable
-     * @param id es un int el cual es el identificador unico del responsable
-     * @param nombre es un string el cual es el nombre del responsable especificado
-     * @param puesto es un string el cual es el puesto del responsable especificado
-     * @return la edicion de los elementos seleccionados del responsable especificado
-     */
+      /**
+    * Method to edit an ability in the database.
+    *
+    * @param id The ID of the ability.
+    * @param habilidad The name of the ability.
+    * @param descripcion The description of the ability.
+    * @param idPotromon The ID of the associated Potromon.
+    * @return true if the update was successful, false otherwise.
+    */
     public static boolean edit(int id, String habilidad, String descripcion, int idPotromon) {
         boolean resultado = false;
         try{
@@ -185,11 +188,13 @@ public class Habilidad {
             System.err.println("Ocurrió un error: " + ex.getMessage());
         }return resultado;
     } 
+    
     /**
-     * En esta seccion de codigo se elimina el id especifico seleccionado de nuestra base de datos
-     * @param id es un int el cual es el identificador unico de nuestro responsable especificado
-     * @return La eliminacion del identificador unico de nuestro responsable especificado
-     */
+    * Method to delete an ability from the database by its ID.
+    *
+    * @param id The ID of the ability to be deleted.
+    * @return true if the ability was deleted successfully, false otherwise.
+    */
     
     public static boolean delete(int id) {
         boolean resultado = false;
@@ -208,11 +213,13 @@ public class Habilidad {
         }return resultado;
     } 
     /**
-     * Guarda un registro de responsable en la base de datos
-     * @param nombre Valor del nombre del responsable
-     * @param puesto Valor del puesto del responsable
-     * @return true si se guardo exitosamente ; de lo contrario, false.
-     */
+    * Method to save a new ability in the database.
+    *
+    * @param habilidad The name of the ability.
+    * @param descripcion The description of the ability.
+    * @param idPotromon The ID of the associated Potromon.
+    * @return true if the ability was saved successfully, false otherwise.
+    */
     public static boolean save(String habilidad, String descripcion, int idPotromon) {
         boolean resultado = false;
         try{

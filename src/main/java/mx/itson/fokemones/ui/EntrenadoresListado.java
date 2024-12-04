@@ -144,27 +144,36 @@ public class EntrenadoresListado extends javax.swing.JFrame {
         tblEntrenadores.removeColumn(tblEntrenadores.getColumnModel().getColumn(0));
         
     }//GEN-LAST:event_formWindowOpened
-
+    /**
+     * Method that is executed when the Add button is pressed
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
+        //Create an instance of EntrenadoresForm with the corresponding parameters.
         EntrenadoresForm form = new EntrenadoresForm(this, true, 0);
         form.setVisible(true);
-        
         loadTable();
+
         
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+        /**
+         * Method that is executed when the Edit button is pressed.
+         */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
+       
         int renglon = tblEntrenadores.getSelectedRow();
         int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
         
         EntrenadoresForm form = new EntrenadoresForm(this, true, idEntrenador);
-         form.setVisible(true);
+        form.setVisible(true);
         
         loadTable();
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
+        /**
+         * Method that is executed when the Delete button is pressed.
+         */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         int renglon = tblEntrenadores.getSelectedRow();
@@ -181,18 +190,29 @@ public class EntrenadoresListado extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Method that is executed when the Potromon button is pressed.
+     */
     private void btnPotromonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotromonActionPerformed
 
-        int renglon = tblEntrenadores.getSelectedRow();
-        int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
-        
-        PotromonesListado potromonesListado = new PotromonesListado(idEntrenador);
-        potromonesListado.setVisible(true);
+       // Obtener el índice de la fila seleccionada en la tabla de entrenadores
+    int renglon = tblEntrenadores.getSelectedRow();
+
+       // Obtener el ID del entrenador de la columna correspondiente en la fila seleccionada
+    int idEntrenador = Integer.parseInt(tblEntrenadores.getModel().getValueAt(renglon, 0).toString());
+
+       // Crear una instancia de PotromonesListado pasando el ID del entrenador
+    PotromonesListado potromonesListado = new PotromonesListado(idEntrenador);
+
+       // Hacer visible la ventana de PotromonesListado
+    potromonesListado.setVisible(true);
+
         
         
     }//GEN-LAST:event_btnPotromonActionPerformed
-
+    /**
+     * Method to load the data into the table.
+     */
     private void loadTable(){
         List<Entrenador> entrenadores = Entrenador.getAll();
         DefaultTableModel modeloTabla = (DefaultTableModel)tblEntrenadores.getModel();

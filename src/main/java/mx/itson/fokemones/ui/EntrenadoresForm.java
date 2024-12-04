@@ -100,7 +100,9 @@ public class EntrenadoresForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        /**
+         * The values from the text fields "txtNombre" and "txtApodo" are retrieved and stored in the variables "nombre" and "puesto" respectively
+         */
         String nombre = txtNombre.getText();
         String puesto = txtApodo.getText();
         

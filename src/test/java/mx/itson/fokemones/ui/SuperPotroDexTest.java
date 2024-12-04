@@ -43,7 +43,7 @@ public class SuperPotroDexTest {
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        SuperPotroDex.main(args);
+        PotroDex.main(args);
         
     }
     

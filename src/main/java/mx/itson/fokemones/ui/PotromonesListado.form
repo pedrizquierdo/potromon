@@ -60,7 +60,7 @@
                       <Component id="jScrollPane1" alignment="0" pref="567" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                           <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
@@ -177,7 +177,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnEditar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="text" type="java.lang.String" value="Editar Puntaje"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
@@ -193,7 +193,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnHabilidades">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver habilidades de este potromon"/>
+            <Property name="text" type="java.lang.String" value="Ver PotroDex de este potromon"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
