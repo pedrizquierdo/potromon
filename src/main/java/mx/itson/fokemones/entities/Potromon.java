@@ -118,29 +118,28 @@ public class Potromon {
      * @return Un objeto de tipo Servicio que contiene los datos del registro correspondiente.
      * Si no se encuentra el registro, se devuelve un objeto vacío con valores predeterminados.
      */
-    public static Potromon getById(int id){
-            Potromon p = new Potromon ();
-        try {
-            Connection conexion = Conexion.obtener();
-            
-            String query = "SELECT id, nombre, descripcion, imagen, puntaje, entrenador_id FROM Potromones WHERE id = ?";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1, id);
-            
-            ResultSet rs = rs = statement.executeQuery();
-            while(rs.next()) {
- 
-                p.setId(rs.getInt(1));
-                p.setNombre(rs.getString(2));
-                p.setDescripcion(rs.getString(3));
-                p.setPuntaje(rs.getInt(4));
-
-            }
-        } catch (Exception ex) {
-            System.err.println("Ocurrió un error " + ex.getMessage());
+   public static Potromon getById(int id) {
+    Potromon p = new Potromon();
+    try {
+        Connection conexion = Conexion.obtener();
+        String query = "SELECT id, nombre, descripcion, imagen, puntaje, entrenador_id FROM Potromones WHERE id = ?";
+        PreparedStatement statement = conexion.prepareStatement(query);
+        statement.setInt(1, id);
+        
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            p.setId(rs.getInt(1));
+            p.setNombre(rs.getString(2));
+            p.setDescripcion(rs.getString(3));
+            p.setImagen(rs.getBytes(4)); // Cargar la imagen como bytes
+            p.setPuntaje(rs.getInt(5));
         }
-        return p;
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error: " + ex.getMessage());
     }
+    return p;
+}
+
       /**
      * Guarda un registro de Servicio en la base de datos
      * @param fecha dato de tipo date el cual es la fecha de realizacion del servicio
@@ -148,25 +147,26 @@ public class Potromon {
      * @param descripcionProblema Dato de tipo String el cual es la descripcion del problema del servicio realizado
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(String Nombre, String Descripcion, int idEntrenador, int puntaje) {
-        boolean resultado = false;
-        try{
-                Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO Potromones (Nombre, Descripcion, entrenador_id, puntaje) VALUES (?, ?, ?, ?)";
-                PreparedStatement statement = conexion.prepareStatement(consulta);
-                
-                statement.setString(1, Nombre);
-                statement.setString(2, Descripcion);
-                statement.setInt(3, idEntrenador);
-                statement.setInt(4, puntaje);
-                statement.execute();
-                resultado = statement.getUpdateCount() == 1;
-                conexion.close();
-        }catch(Exception ex) {
-            System.err.println("Ocurrió un error: " + ex.getMessage());
-        }return resultado;
+    public static boolean save(String nombre, String descripcion, byte[] imagen, int idEntrenador, int puntaje) {
+    boolean resultado = false;
+    try {
+        Connection conexion = Conexion.obtener();
+        String consulta = "INSERT INTO Potromones (Nombre, Descripcion, Imagen, entrenador_id, puntaje) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement statement = conexion.prepareStatement(consulta);
         
+        statement.setString(1, nombre);
+        statement.setString(2, descripcion);
+        statement.setBytes(3, imagen); // Guardar la imagen como bytes
+        statement.setInt(4, idEntrenador);
+        statement.setInt(5, puntaje);
         
+        statement.execute();
+        resultado = statement.getUpdateCount() == 1;
+        conexion.close();
+    } catch (Exception ex) {
+        System.err.println("Ocurrió un error: " + ex.getMessage());
+    }
+    return resultado;    
     }
         /**
      * Aqui esta seccion de codigo sirve para poder editar desde nuestro programa, la base de datos y poder 

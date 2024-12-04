@@ -4,7 +4,9 @@
  */
 package mx.itson.fokemones.ui;
 
+import java.awt.Image;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.fokemones.entities.Potromon;
@@ -23,6 +25,8 @@ public class PotromonesListado extends javax.swing.JFrame {
     public PotromonesListado(int IdEntrenador) {
         this.idEntrenador = IdEntrenador;
         initComponents();
+        loadTable(idEntrenador);
+        configurarRenderizadorTabla();
         loadTable(idEntrenador);
     }
 
@@ -210,28 +214,51 @@ public class PotromonesListado extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnHabilidadesActionPerformed
 
-    private void loadTable(int idEntrenador){
-        
-        List<Potromon> potromones = Potromon.getAll();
-        DefaultTableModel modeloTabla = (DefaultTableModel)tblPotromones.getModel();
-        modeloTabla.setRowCount(0);
-        
-    
-        for(Potromon p: potromones) {
-            if(p.getEntrenadores().getId() == idEntrenador) {
-            modeloTabla.addRow(new Object[] {
-            p.getId(),
-            p.getNombre(),
-            p.getDescripcion(),
-            p.getImagen(),
-            p.getHabilidad().size(),
-            p.getPuntaje()
-                    
-                   
-            });
+    private void loadTable(int idEntrenador) {
+    List<Potromon> potromones = Potromon.getAll();
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblPotromones.getModel();
+    modeloTabla.setRowCount(0);
+
+    for (Potromon p : potromones) {
+        if (p.getEntrenadores().getId() == idEntrenador) {
+            // Convertir bytes a ImageIcon
+            ImageIcon icono = null;
+            if (p.getImagen() != null) {
+                byte[] imgBytes = p.getImagen();
+                Image img = new ImageIcon(imgBytes).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                icono = new ImageIcon(img);
             }
+
+            // Agregar fila con el icono
+            modeloTabla.addRow(new Object[]{
+                p.getId(),
+                p.getNombre(),
+                p.getDescripcion(),
+                icono, // Agregar el ImageIcon aquí
+                p.getHabilidad().size(),
+                p.getPuntaje()
+            });
         }
     }
+}
+    
+private void configurarRenderizadorTabla() {
+    tblPotromones.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+        @Override
+        public void setValue(Object value) {
+            if (value instanceof ImageIcon) {
+                // Si el valor es un ImageIcon, configúralo como ícono de la celda
+                setIcon((ImageIcon) value);
+                setText(""); // Elimina cualquier texto
+            } else {
+                super.setValue(value);
+            }
+        }
+    });
+}
+
+
+    
     
     /**
      * @param args the command line arguments
