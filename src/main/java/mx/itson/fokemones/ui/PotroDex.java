@@ -5,9 +5,12 @@
 package mx.itson.fokemones.ui;
 
 import java.awt.Image;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.fokemones.entities.Habilidad;
 
 /**
  *
@@ -15,12 +18,16 @@ import javax.swing.JLabel;
  */
 public class PotroDex extends javax.swing.JDialog {
 
+    
+    private int idPotromon;
     /**
      * Creates new form PotroDex
      */
-    public PotroDex(java.awt.Frame parent, boolean modal) {
+    public PotroDex(java.awt.Frame parent, boolean modal, int IdPotromon) {
         super(parent, modal);
+        this.idPotromon = IdPotromon;
         initComponents();
+        loadTable(idPotromon);
         this.setLocationRelativeTo(this);
         SetImageLabel(jLabel6,"C:\\Users\\zBook\\Documents\\NetBeansProjects\\Fokemones\\src\\main\\java\\mx\\itson\\fokemones\\images\\images\\images\\images\\juiceportal.jpg");
     }
@@ -45,6 +52,9 @@ public class PotroDex extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblHabilidades = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -80,6 +90,26 @@ public class PotroDex extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         jLabel5.setText("POTRODEX");
 
+        tblHabilidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Habilidad", "Descripcion"
+            }
+        ));
+        jScrollPane1.setViewportView(tblHabilidades);
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,19 +117,26 @@ public class PotroDex extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jLabel5)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(btnAgregar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel3)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +154,14 @@ public class PotroDex extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(jLabel3)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addGap(184, 184, 184))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,8 +179,42 @@ public class PotroDex extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        
+        loadTable(idPotromon);
+        tblHabilidades.removeColumn(tblHabilidades.getColumnModel().getColumn(0));
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+
+        int idHabilidad = 0;
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad, idPotromon);
+        form.setVisible(true);
+        
+        loadTable(idPotromon);
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
+    
+    private void loadTable(int idPotromon){
+        
+        List<Habilidad> habilidades = Habilidad.getAll();
+        DefaultTableModel modeloTabla = (DefaultTableModel)tblHabilidades.getModel();
+        modeloTabla.setRowCount(0);
+        
+    
+        for(Habilidad h: habilidades) {
+            if(h.getProtomon().getId() == idPotromon) {
+            modeloTabla.addRow(new Object[] {
+            h.getId(),
+            h.getHabilidad(),    
+            h.getDescripción(),
+            
+               
+            });
+            }
+        }
+    }
+    
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
@@ -173,7 +251,7 @@ public class PotroDex extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PotroDex dialog = new PotroDex(new javax.swing.JFrame(), true);
+                PotroDex dialog = new PotroDex(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -186,6 +264,7 @@ public class PotroDex extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -194,6 +273,8 @@ public class PotroDex extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblHabilidades;
     // End of variables declaration//GEN-END:variables
 }
