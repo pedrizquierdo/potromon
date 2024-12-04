@@ -20,6 +20,10 @@ public class HabilidadForm extends javax.swing.JDialog {
     private int idPotromon;
     /**
      * Creates new form HabilidadForm
+     * @param parent
+     * @param modal
+     * @param id
+     * @param IdPotromon
      */
     public HabilidadForm(java.awt.Frame parent, boolean modal, int id, int IdPotromon) {
         super(parent, modal);

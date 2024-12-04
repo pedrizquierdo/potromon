@@ -114,8 +114,6 @@ public class Potromon {
      *  In this seccion of code is used to get the ID of the especific "Potromon".
      * The id of "responsable" name of "Potromon" and the position of the especific "Potromon".
      * @param id Is an INT which is the id of the especific "Potromon".
-     * @param nombre Is a String which is the name of the especific "Potromon".
-     * @param puesto Is a String which is the assigned position of the especific "Potromon".
      * @return An object of type "Potron" That contains the data of the corresponding record.
      * If the record is not found, an empty object with default values is returned.
      */
@@ -143,9 +141,11 @@ public class Potromon {
 
       /**
      * Stores a service record in the database.
-     * @param fecha A date type data which is the date the service was performed.
-     * @param idResponsable An int type data which is the unique identifier of the person responsible for performing the service.
-     * @param descripcionProblema A String type data which is the description of the service problem.
+     * @param nombre A string type data which is the date the service was performed.
+     * @param descripcion An int type data which is the unique identifier of the person responsible for performing the service.
+     * @param imagen A String type data which is the description of the service problem.
+     * @param idEntrenador A String type data which is the description of the service problem.
+     * @param puntaje A string type data which is the date the service was performed.
      * @return true if saved successfully; otherwise, false
      */
     public static boolean save(String nombre, String descripcion, byte[] imagen, int idEntrenador, int puntaje) {
@@ -171,9 +171,8 @@ public class Potromon {
     }
      /**
      * This section of code allows us to edit the database from our program and modify the entire 'Servicio' table.
-     * @param fecha A date type data, which is the date the service was performed.
-     * @param idResponsable An int type data, which is the unique identifier of the person responsible for performing the service.
-     * @param descripcionProblema A String type data, which is the description of the service problem.
+     * @param id A date type data, which is the date the service was performed.
+     * @param puntaje An int type data, which is the unique identifier of the person responsible for performing the service.
      * @return The editing of the selected elements of the specified service.  
      */
     
@@ -195,7 +194,7 @@ public class Potromon {
     } 
      /**
      * In this section of code the selected specific ID is deleted from our database.
-     * @param idServicio An int which is the unique identifier of the specified service.
+     * @param Id An int which is the unique identifier of the specified service.
      * @return The deletion of the unique identifier of the specified service.
      */
     public static boolean delete(int Id) {
@@ -268,7 +267,7 @@ public class Potromon {
     /**
      * This method is used to update the image of a Potromon in the database.
      * @param id An int that represents the unique identifier of the Potromon to which the new image will be assigned.
-     * @param imageA byte array that contains the binary data of the image to be stored.
+     * @param image byte array that contains the binary data of the image to be stored.
      * @return True if the image has been successfully added, otherwise false.
      */
     public static boolean aggImage(int id, byte[] image){

@@ -26,6 +26,8 @@ public class PotroDex extends javax.swing.JFrame {
     private int idEntrenador;
     /**
      * Creates new form SuperPotroDex
+     * @param IdPotromon
+     * @param IdEntrenador
      */
     public PotroDex(int IdPotromon, int IdEntrenador) {
         this.idPotromon = IdPotromon;

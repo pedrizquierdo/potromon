@@ -19,6 +19,7 @@ public class HabilidadListado extends javax.swing.JFrame {
     private int idPotromon;
     /**
      * Creates new form HabilidadListado
+     * @param IdPotromon
      */
     public HabilidadListado(int IdPotromon) {
         this.idPotromon = IdPotromon;

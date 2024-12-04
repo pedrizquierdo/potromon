@@ -23,6 +23,7 @@ public class PotromonesListado extends javax.swing.JFrame {
     private int idEntrenador;
     /**
      * Creates new form PotromonesListado
+     * @param IdEntrenador
      */
     public PotromonesListado(int IdEntrenador) {
         this.idEntrenador = IdEntrenador;

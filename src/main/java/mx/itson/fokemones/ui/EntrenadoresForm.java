@@ -17,6 +17,9 @@ public class EntrenadoresForm extends javax.swing.JDialog {
     int id;
     /**
      * Creates new form EntrenadoresForm
+     * @param parent 
+     * @param modal
+     * @param id
      */
     public EntrenadoresForm(java.awt.Frame parent, boolean modal, int id) {
         super(parent, modal);

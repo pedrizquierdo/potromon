@@ -25,6 +25,7 @@ public class SuperPotroDex extends javax.swing.JFrame {
     //kalaka
     /**
      * Creates new form SuperPotroDex
+     * @param IdPotromon
      */
     public SuperPotroDex(int IdPotromon) {
         this.idPotromon = IdPotromon;

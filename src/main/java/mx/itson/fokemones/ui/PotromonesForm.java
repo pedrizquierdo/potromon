@@ -23,6 +23,10 @@ public class PotromonesForm extends javax.swing.JDialog {
     private int idEntrenador;
     /**
      * Creates new form PotromonesForm
+     * @param parent
+     * @param modal
+     * @param id
+     * @param IdEntrenador
      */
     public PotromonesForm(java.awt.Frame parent, boolean modal,int id, int IdEntrenador) {
         super(parent, modal);

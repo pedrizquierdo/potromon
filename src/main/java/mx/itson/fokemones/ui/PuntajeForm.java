@@ -18,6 +18,9 @@ public class PuntajeForm extends javax.swing.JDialog {
     
     /**
      * Creates new form PuntajeForm
+     * @param parent
+     * @param modal
+     * @param id
      */
     public PuntajeForm(java.awt.Frame parent, boolean modal, int id) {
         super(parent, modal);
