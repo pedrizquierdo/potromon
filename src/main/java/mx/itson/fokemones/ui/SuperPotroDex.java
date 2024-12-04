@@ -22,7 +22,7 @@ import mx.itson.fokemones.entities.Potromon;
 public class SuperPotroDex extends javax.swing.JFrame {
   
     private int idPotromon;
-    
+    //kalaka
     /**
      * Creates new form SuperPotroDex
      */
