@@ -19,6 +19,20 @@ import mx.itson.fokemones.persistencia.Conexion;
 public class Habilidad {
 
     /**
+     * @return the descripción
+     */
+    public String getDescripción() {
+        return descripción;
+    }
+
+    /**
+     * @param descripción the descripción to set
+     */
+    public void setDescripción(String descripción) {
+        this.descripción = descripción;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -62,14 +76,14 @@ public class Habilidad {
     private int id;
     private String habilidad;
     private Potromon protomon;
-    
-    
+    private String descripción;
+       
     
     public static List<Habilidad> getList(int idPotromon) {
         List<Habilidad> habilidades = new ArrayList<>();
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "SELECT id, habilidad FROM habilidades WHERE potromon_id = ?";
+            String consulta = "SELECT id, habilidad, descripcion FROM habilidades WHERE potromon_id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setInt(1, idPotromon);
             ResultSet rs = statement.executeQuery();
@@ -77,6 +91,7 @@ public class Habilidad {
                 Habilidad h = new Habilidad();
                 h.setId(rs.getInt(1));
                 h.setHabilidad(rs.getString(2));
+                h.setDescripción(rs.getString(3));
                 
                 habilidades.add(h);
                 
@@ -96,11 +111,12 @@ public class Habilidad {
         try {
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, habilidad FROM habilidades");
+            ResultSet rs = statement.executeQuery("SELECT id, habilidad, descripcion FROM habilidades");
             while(rs.next()) {
                 Habilidad h = new Habilidad();
                 h.setId(rs.getInt(1));
                 h.setHabilidad(rs.getString(2));
+                h.setDescripción(rs.getString(3));
                 habilidades.add(h);
             }
         } catch (Exception ex) {
@@ -123,7 +139,7 @@ public class Habilidad {
         try {
             Connection conexion = Conexion.obtener();
             
-            String query = "SELECT id, habilidad, FROM habilidades WHERE id = ?";
+            String query = "SELECT id, habilidad, descripcion FROM habilidades WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1, id);
             
@@ -148,14 +164,15 @@ public class Habilidad {
      * @param puesto es un string el cual es el puesto del responsable especificado
      * @return la edicion de los elementos seleccionados del responsable especificado
      */
-    public static boolean edit(int id, String habilidad) {
+    public static boolean edit(int id, String habilidad, String descripcion) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "UPDATE habilidades SET int = ?, habilidad = ? WHERE id = ?";
+                String consulta = "UPDATE habilidades SET int = ?, habilidad = ?, descripcion = ? WHERE id = ?";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setInt(1, id);
                 statement.setString(2, habilidad);
+                statement.setString(3, descripcion);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
@@ -192,14 +209,15 @@ public class Habilidad {
      * @param puesto Valor del puesto del responsable
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(int id, String habilidad) {
+    public static boolean save(int id, String habilidad, String descripcion) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
-                String consulta = "INSERT INTO habilidades (id, habilidad) VALUES (?, ?)";
+                String consulta = "INSERT INTO habilidades (id, habilidad, descripcion) VALUES (?, ?, ?)";
                 PreparedStatement statement = conexion.prepareStatement(consulta);
                 statement.setInt(1, id);
                 statement.setString(2, habilidad);
+                statement.setString(3, descripcion);
                 
                 statement.execute();
                 resultado = statement.getUpdateCount() == 1;
