@@ -125,7 +125,7 @@ public class HabilidadListado extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         int idHabilidad = 0;
-        HabilidadForm form = new HabilidadForm(this, true, idHabilidad);
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad, idPotromon);
         form.setVisible(true);
         
         loadTable(idPotromon);

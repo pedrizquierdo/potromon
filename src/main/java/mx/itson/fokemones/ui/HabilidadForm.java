@@ -16,14 +16,14 @@ public class HabilidadForm extends javax.swing.JDialog {
 
     
     int id;
-
+    private int idPotromon;
     /**
      * Creates new form HabilidadForm
      */
-    public HabilidadForm(java.awt.Frame parent, boolean modal, int id) {
+    public HabilidadForm(java.awt.Frame parent, boolean modal, int id, int IdPotromon) {
         super(parent, modal);
         initComponents();
-        
+        this.idPotromon = IdPotromon;
         this.id = id;
         if(id != 0){
             Habilidad h = Habilidad.getById(id);
@@ -116,7 +116,7 @@ public class HabilidadForm extends javax.swing.JDialog {
         String descripcion = txtDescripcion.getText();
        
         
-        boolean resultado = Habilidad.save(habilidad, descripcion);
+        boolean resultado = Habilidad.save(habilidad, descripcion, idPotromon);
         
         if(resultado) {
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro Guardado", JOptionPane.INFORMATION_MESSAGE);
@@ -157,7 +157,7 @@ public class HabilidadForm extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HabilidadForm dialog = new HabilidadForm(new javax.swing.JFrame(), true, 0);
+                HabilidadForm dialog = new HabilidadForm(new javax.swing.JFrame(), true, 0, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

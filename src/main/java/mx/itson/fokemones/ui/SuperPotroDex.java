@@ -215,7 +215,7 @@ public class SuperPotroDex extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
         int idHabilidad = 0;
-        HabilidadForm form = new HabilidadForm(this, true, idHabilidad);
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad, idPotromon);
         form.setVisible(true);
         
         loadTable(idPotromon);
@@ -233,7 +233,7 @@ public class SuperPotroDex extends javax.swing.JFrame {
         int renglon = tblHabilidades.getSelectedRow();
         int idHabilidad = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
         
-        HabilidadForm form = new HabilidadForm(this, true, idHabilidad);
+        HabilidadForm form = new HabilidadForm(this, true, idHabilidad, idPotromon);
          form.setVisible(true);
         
         loadTable(idPotromon);
@@ -243,11 +243,11 @@ public class SuperPotroDex extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         int renglon = tblHabilidades.getSelectedRow();
-        int idEntrenador = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
+        int idHabilidad = Integer.parseInt(tblHabilidades.getModel().getValueAt(renglon, 0).toString());
         
         if (JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
         
-        if(Entrenador.delete(idEntrenador)){
+        if(Habilidad.delete(idHabilidad)){
             JOptionPane.showMessageDialog(this, "El registro se eliminó con éxito", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
             loadTable(idPotromon);
         } else {

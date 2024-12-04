@@ -212,7 +212,7 @@ public class Habilidad {
      * @param puesto Valor del puesto del responsable
      * @return true si se guardo exitosamente ; de lo contrario, false.
      */
-    public static boolean save(String habilidad, String descripcion) {
+    public static boolean save(String habilidad, String descripcion, int idPotromon) {
         boolean resultado = false;
         try{
                 Connection conexion = Conexion.obtener();
@@ -221,6 +221,7 @@ public class Habilidad {
                 
                 statement.setString(1, habilidad);
                 statement.setString(2, descripcion);
+                statement.setInt(3, idPotromon);
                 
                 
                 
