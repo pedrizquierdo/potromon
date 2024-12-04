@@ -96,6 +96,8 @@ public class SuperPotroDex extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 350, 240));
 
+        btnAgregar.setBackground(new java.awt.Color(51, 51, 51));
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,21 +182,24 @@ public class SuperPotroDex extends javax.swing.JFrame {
         jLabel5.setText("HABILIDADES");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 268, 38));
 
+        btnEditar.setBackground(new java.awt.Color(51, 51, 51));
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 387, -1, 40));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 387, 80, 40));
 
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, -1, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 80, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

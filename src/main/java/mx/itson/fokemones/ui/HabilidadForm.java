@@ -5,6 +5,7 @@
 package mx.itson.fokemones.ui;
 
 import javax.swing.JOptionPane;
+import mx.itson.fokemones.entities.Entrenador;
 import mx.itson.fokemones.entities.Habilidad;
 import mx.itson.fokemones.entities.Potromon;
 
@@ -115,8 +116,10 @@ public class HabilidadForm extends javax.swing.JDialog {
         String habilidad = txtHabilidad.getText();
         String descripcion = txtDescripcion.getText();
        
+        boolean resultado = this.id == 0 ?
+                Habilidad.save(habilidad, descripcion, idPotromon):
+                Habilidad.edit(id, habilidad, descripcion, idPotromon);
         
-        boolean resultado = Habilidad.save(habilidad, descripcion, idPotromon);
         
         if(resultado) {
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro Guardado", JOptionPane.INFORMATION_MESSAGE);
