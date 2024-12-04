@@ -4,9 +4,11 @@
  */
 package mx.itson.fokemones.ui;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.fokemones.entities.Potromon;
@@ -243,19 +245,19 @@ public class PotromonesListado extends javax.swing.JFrame {
 }
     
 private void configurarRenderizadorTabla() {
-    tblPotromones.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+    tblPotromones.getColumnModel().getColumn(3).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
         @Override
-        public void setValue(Object value) {
+        public Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             if (value instanceof ImageIcon) {
-                // Si el valor es un ImageIcon, configúralo como ícono de la celda
-                setIcon((ImageIcon) value);
-                setText(""); // Elimina cualquier texto
-            } else {
-                super.setValue(value);
+                JLabel label = new JLabel((ImageIcon) value);
+                label.setHorizontalAlignment(JLabel.CENTER);
+                return label;
             }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         }
     });
 }
+
 
 
     
