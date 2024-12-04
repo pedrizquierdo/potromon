@@ -44,7 +44,7 @@ public class HabilidadTest {
     public void testGetDescripción() {
         System.out.println("getDescripcion");
         Habilidad instance = new Habilidad();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getDescripción();
         assertEquals(expResult, result);
         
@@ -94,7 +94,7 @@ public class HabilidadTest {
     public void testGetHabilidad() {
         System.out.println("getHabilidad");
         Habilidad instance = new Habilidad();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getHabilidad();
         assertEquals(expResult, result);
         
@@ -184,8 +184,9 @@ public class HabilidadTest {
         int id = 1;
         String habilidad = "Tirar lava por la boca";
         String descripcion = "Potromon peligroso salvaje";
-        boolean expResult = true;
-        boolean result = Habilidad.edit(id, habilidad, descripcion);
+        int potromon_id = 2;
+        boolean expResult = false;
+        boolean result = Habilidad.edit(id, habilidad, descripcion, potromon_id);
         assertEquals(expResult, result);
         
     }
@@ -197,7 +198,7 @@ public class HabilidadTest {
     public void testDelete() {
         System.out.println("delete");
         int id = 2;
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = Habilidad.delete(id);
         assertEquals(expResult, result);
         
