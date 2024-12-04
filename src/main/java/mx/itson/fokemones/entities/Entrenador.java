@@ -64,9 +64,9 @@ public class Entrenador {
     private String apodo;
 
 /**
-     * Esta seccion de codigo se usa para poder seleccionar todo lo que este dentro de "Responsable"
-     * En la base de datos
-     * @return todos los datos seleccionados de la base de datos
+     * this seccion of code is used to select everything inside of "Responsable"
+     * in the database
+     * @return All the data selected from the database
      */   
     public static List<Entrenador> getAll() {
         List<Entrenador> entrenadores = new ArrayList<>();
@@ -88,7 +88,7 @@ public class Entrenador {
     }
     
     /**
-      * En esta seccion de codigo se utiliza para poder obtener el id del responsable en especifico
+      * In this seccion of code is used to get the ID of the especific "Responsable"
      * el id del responsable nombre del responsable y puesto del responsable especificado
      * @param id es un int el cual es el id del responsable espesifcado
      * @param nombre es un string el cual es el nombre del responsable especificado
