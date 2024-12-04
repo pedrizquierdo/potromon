@@ -13,8 +13,9 @@ import java.util.List;
 import mx.itson.fokemones.persistencia.Conexion;
 
 /**
- *
- * @author zBook
+ * Represents a "Potromon" entity, which is a fictional character in the game system.
+ * It includes properties such as ID, name, description, score, image, trainer, and abilities.
+ * Provides methods to interact with the database, such as creating, editing, deleting, and retrieving "Potromon" records.
  */
 public class Potromon {
 

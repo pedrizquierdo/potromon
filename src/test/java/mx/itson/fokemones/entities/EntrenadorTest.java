@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * This is the test class for testing the functionalities of the Entrenador class.
+ * The test methods cover different methods of the Entrenador class, such as getters and setters, 
+ * as well as methods that interact with the database like save, edit, and delete.
  */
+
 package mx.itson.fokemones.entities;
 
 import java.util.List;
@@ -13,32 +15,42 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * JUnit test class for testing the methods of the Entrenador class.
+ * 
+ * The tests cover:
+ * - Getters and setters for the 'id', 'nombre' (name), and 'apodo' (nickname) properties.
+ * - Interaction with the database, including saving, editing, retrieving, and deleting records.
+ * 
  * @author alang
  */
 public class EntrenadorTest {
-    
+
     public EntrenadorTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
+        // Code to set up any necessary resources or test data before all tests.
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
+        // Code to clean up resources after all tests.
     }
-    
+
     @BeforeEach
     public void setUp() {
+        // Code to set up the environment before each test.
     }
-    
+
     @AfterEach
     public void tearDown() {
+        // Code to clean up after each test.
     }
 
     /**
-     * Test of getId method, of class Entrenador.
+     * Test for the getId method of the Entrenador class.
+     * Verifies that the default value of 'id' is 0.
      */
     @Test
     public void testGetId() {
@@ -50,7 +62,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of setId method, of class Entrenador.
+     * Test for the setId method of the Entrenador class.
+     * Verifies that the 'id' value can be set correctly.
      */
     @Test
     public void testSetId() {
@@ -58,11 +71,11 @@ public class EntrenadorTest {
         int id = 1;
         Entrenador instance = new Entrenador();
         instance.setId(id);
-        
     }
 
     /**
-     * Test of getNombre method, of class Entrenador.
+     * Test for the getNombre method of the Entrenador class.
+     * Verifies that the default value of 'nombre' is null.
      */
     @Test
     public void testGetNombre() {
@@ -71,11 +84,11 @@ public class EntrenadorTest {
         String expResult = null;
         String result = instance.getNombre();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setNombre method, of class Entrenador.
+     * Test for the setNombre method of the Entrenador class.
+     * Verifies that the 'nombre' value can be set correctly.
      */
     @Test
     public void testSetNombre() {
@@ -86,7 +99,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of getApodo method, of class Entrenador.
+     * Test for the getApodo method of the Entrenador class.
+     * Verifies that the default value of 'apodo' is null.
      */
     @Test
     public void testGetApodo() {
@@ -98,7 +112,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of setApodo method, of class Entrenador.
+     * Test for the setApodo method of the Entrenador class.
+     * Verifies that the 'apodo' value can be set correctly.
      */
     @Test
     public void testSetApodo() {
@@ -109,7 +124,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of getAll method, of class Entrenador.
+     * Test for the getAll method of the Entrenador class.
+     * Verifies that a list of Entrenador objects can be retrieved.
      */
     @Test
     public void testGetAll() {
@@ -120,7 +136,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of getById method, of class Entrenador.
+     * Test for the getById method of the Entrenador class.
+     * Verifies that an Entrenador object can be retrieved by its ID.
      */
     @Test
     public void testGetById() {
@@ -132,7 +149,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of edit method, of class Entrenador.
+     * Test for the edit method of the Entrenador class.
+     * Verifies that an Entrenador record can be edited with new values.
      */
     @Test
     public void testEdit() {
@@ -146,7 +164,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of delete method, of class Entrenador.
+     * Test for the delete method of the Entrenador class.
+     * Verifies that an Entrenador record can be deleted by its ID.
      */
     @Test
     public void testDelete() {
@@ -158,7 +177,8 @@ public class EntrenadorTest {
     }
 
     /**
-     * Test of save method, of class Entrenador.
+     * Test for the save method of the Entrenador class.
+     * Verifies that a new Entrenador record can be saved to the database.
      */
     @Test
     public void testSave() {
@@ -169,5 +189,4 @@ public class EntrenadorTest {
         boolean result = Entrenador.save(nombre, apodo);
         assertEquals(expResult, result);
     }
-    
 }

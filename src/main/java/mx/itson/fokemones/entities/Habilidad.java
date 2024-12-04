@@ -13,7 +13,10 @@ import java.util.List;
 import mx.itson.fokemones.persistencia.Conexion;
 
 /**
- *
+ * The Habilidad class represents the abilities of a Potromon. It provides methods to 
+ * interact with the abilities in the database, including retrieving, editing, deleting, 
+ * and adding abilities.
+ * 
  * @author zBook
  */
 public class Habilidad {

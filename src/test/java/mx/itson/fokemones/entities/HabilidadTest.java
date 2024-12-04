@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * Test class for the Habilidad (Ability) entity.
  */
 package mx.itson.fokemones.entities;
 
@@ -13,32 +12,45 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
- * @author luismorellb
+ * Unit test class for the Habilidad entity class.
+ * It contains tests for the Habilidad class methods.
  */
 public class HabilidadTest {
-    
+
     public HabilidadTest() {
     }
-    
+
+    /**
+     * Sets up any resources before the first test in the class.
+     */
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
+    /**
+     * Cleans up resources after all tests in the class have run.
+     */
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
+    /**
+     * Sets up resources before each test method.
+     */
     @BeforeEach
     public void setUp() {
     }
-    
+
+    /**
+     * Cleans up resources after each test method.
+     */
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getDescripción method, of class Habilidad.
+     * Test of the getDescripción method, of the Habilidad class.
+     * It checks that the description is initially null.
      */
     @Test
     public void testGetDescripción() {
@@ -47,11 +59,11 @@ public class HabilidadTest {
         String expResult = null;
         String result = instance.getDescripción();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setDescripción method, of class Habilidad.
+     * Test of the setDescripción method, of the Habilidad class.
+     * It sets a description and verifies the method does not throw exceptions.
      */
     @Test
     public void testSetDescripción() {
@@ -59,11 +71,11 @@ public class HabilidadTest {
         String descripción = "Potromon peligroso salvaje";
         Habilidad instance = new Habilidad();
         instance.setDescripción(descripción);
-        
     }
 
     /**
-     * Test of getId method, of class Habilidad.
+     * Test of the getId method, of the Habilidad class.
+     * It checks the default ID value.
      */
     @Test
     public void testGetId() {
@@ -72,11 +84,11 @@ public class HabilidadTest {
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setId method, of class Habilidad.
+     * Test of the setId method, of the Habilidad class.
+     * It sets the ID and verifies the method does not throw exceptions.
      */
     @Test
     public void testSetId() {
@@ -84,11 +96,11 @@ public class HabilidadTest {
         int id = 1;
         Habilidad instance = new Habilidad();
         instance.setId(id);
-        
     }
 
     /**
-     * Test of getHabilidad method, of class Habilidad.
+     * Test of the getHabilidad method, of the Habilidad class.
+     * It checks that the habilidad (ability) is initially null.
      */
     @Test
     public void testGetHabilidad() {
@@ -97,11 +109,11 @@ public class HabilidadTest {
         String expResult = null;
         String result = instance.getHabilidad();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setHabilidad method, of class Habilidad.
+     * Test of the setHabilidad method, of the Habilidad class.
+     * It sets a habilidad (ability) and verifies the method does not throw exceptions.
      */
     @Test
     public void testSetHabilidad() {
@@ -109,11 +121,11 @@ public class HabilidadTest {
         String habilidad = "Tirar lava por la boca";
         Habilidad instance = new Habilidad();
         instance.setHabilidad(habilidad);
-        
     }
 
     /**
-     * Test of getProtomon method, of class Habilidad.
+     * Test of the getProtomon method, of the Habilidad class.
+     * It checks the default Protomon value, which is initially null.
      */
     @Test
     public void testGetProtomon() {
@@ -122,11 +134,11 @@ public class HabilidadTest {
         Potromon expResult = null;
         Potromon result = instance.getProtomon();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setProtomon method, of class Habilidad.
+     * Test of the setProtomon method, of the Habilidad class.
+     * It sets the Protomon and verifies the method does not throw exceptions.
      */
     @Test
     public void testSetProtomon() {
@@ -134,11 +146,11 @@ public class HabilidadTest {
         Potromon protomon = null;
         Habilidad instance = new Habilidad();
         instance.setProtomon(protomon);
-        
     }
 
     /**
-     * Test of getList method, of class Habilidad.
+     * Test of the getList method, of the Habilidad class.
+     * It checks the result of getting all abilities for a given Protomon.
      */
     @Test
     public void testGetList() {
@@ -147,11 +159,11 @@ public class HabilidadTest {
         List<Habilidad> expResult = null;
         List<Habilidad> result = Habilidad.getList(idPotromon);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of getAll method, of class Habilidad.
+     * Test of the getAll method, of the Habilidad class.
+     * It checks the result of getting all abilities.
      */
     @Test
     public void testGetAll() {
@@ -159,11 +171,11 @@ public class HabilidadTest {
         List<Habilidad> expResult = null;
         List<Habilidad> result = Habilidad.getAll();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of getById method, of class Habilidad.
+     * Test of the getById method, of the Habilidad class.
+     * It checks the result of getting a specific ability by ID.
      */
     @Test
     public void testGetById() {
@@ -172,11 +184,11 @@ public class HabilidadTest {
         Habilidad expResult = null;
         Habilidad result = Habilidad.getById(id);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of edit method, of class Habilidad.
+     * Test of the edit method, of the Habilidad class.
+     * It checks the result of editing an ability.
      */
     @Test
     public void testEdit() {
@@ -188,11 +200,11 @@ public class HabilidadTest {
         boolean expResult = false;
         boolean result = Habilidad.edit(id, habilidad, descripcion, potromon_id);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of delete method, of class Habilidad.
+     * Test of the delete method, of the Habilidad class.
+     * It checks the result of deleting an ability.
      */
     @Test
     public void testDelete() {
@@ -201,11 +213,11 @@ public class HabilidadTest {
         boolean expResult = false;
         boolean result = Habilidad.delete(id);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of save method, of class Habilidad.
+     * Test of the save method, of the Habilidad class.
+     * It checks the result of saving a new ability.
      */
     @Test
     public void testSave() {
@@ -216,7 +228,5 @@ public class HabilidadTest {
         boolean expResult = false;
         boolean result = Habilidad.save(habilidad, descripcion, idPotromon);
         assertEquals(expResult, result);
-        
     }
-    
 }

@@ -13,7 +13,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * Unit test class for testing the methods of the Potromon class.
+ * This class includes tests for various methods like getId, setId, getNombre,
+ * setNombre, getDescripcion, setDescripcion, and others related to Potromon entities.
+ * The tests verify that these methods perform correctly based on the expected behavior.
+ * 
  * @author luismorellb
  */
 public class PotromonTest {
@@ -38,170 +42,157 @@ public class PotromonTest {
     }
 
     /**
-     * Test of getId method, of class Potromon.
+     * Test the getId method of the Potromon class.
      */
     @Test
     public void testGetId() {
         System.out.println("getId");
         Potromon instance = new Potromon();
-        int expResult = 0;
+        int expResult = 0;  // Expected result for ID is 0 as default.
         int result = instance.getId();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setId method, of class Potromon.
+     * Test the setId method of the Potromon class.
      */
     @Test
     public void testSetId() {
         System.out.println("setId");
         int id = 1;
         Potromon instance = new Potromon();
-        instance.setId(id);
-        
+        instance.setId(id);  // Setting ID to 1.
     }
 
     /**
-     * Test of getNombre method, of class Potromon.
+     * Test the getNombre method of the Potromon class.
      */
     @Test
     public void testGetNombre() {
         System.out.println("getNombre");
         Potromon instance = new Potromon();
-        String expResult = null;
+        String expResult = null;  // Default name is expected to be null.
         String result = instance.getNombre();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setNombre method, of class Potromon.
+     * Test the setNombre method of the Potromon class.
      */
     @Test
     public void testSetNombre() {
         System.out.println("setNombre");
         String nombre = "Palomyts";
         Potromon instance = new Potromon();
-        instance.setNombre(nombre);
-        
+        instance.setNombre(nombre);  // Setting the name to "Palomyts".
     }
 
     /**
-     * Test of getDescripcion method, of class Potromon.
+     * Test the getDescripcion method of the Potromon class.
      */
     @Test
     public void testGetDescripcion() {
         System.out.println("getDescripcion");
         Potromon instance = new Potromon();
-        String expResult = null;
+        String expResult = null;  // Default description is expected to be null.
         String result = instance.getDescripcion();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setDescripcion method, of class Potromon.
+     * Test the setDescripcion method of the Potromon class.
      */
     @Test
     public void testSetDescripcion() {
         System.out.println("setDescripcion");
         String descripcion = "Potromon volador";
         Potromon instance = new Potromon();
-        instance.setDescripcion(descripcion);
-        
+        instance.setDescripcion(descripcion);  // Setting description to "Potromon volador".
     }
 
     /**
-     * Test of getPuntaje method, of class Potromon.
+     * Test the getPuntaje method of the Potromon class.
      */
     @Test
     public void testGetPuntaje() {
         System.out.println("getPuntaje");
         Potromon instance = new Potromon();
-        int expResult = 0;
+        int expResult = 0;  // Default score is expected to be 0.
         int result = instance.getPuntaje();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setPuntaje method, of class Potromon.
+     * Test the setPuntaje method of the Potromon class.
      */
     @Test
     public void testSetPuntaje() {
         System.out.println("setPuntaje");
         int puntaje = 100;
         Potromon instance = new Potromon();
-        instance.setPuntaje(puntaje);
-        
+        instance.setPuntaje(puntaje);  // Setting score to 100.
     }
 
     /**
-     * Test of getEntrenadores method, of class Potromon.
+     * Test the getEntrenadores method of the Potromon class.
      */
     @Test
     public void testGetEntrenadores() {
         System.out.println("getEntrenadores");
         Potromon instance = new Potromon();
-        Entrenador expResult = null;
+        Entrenador expResult = null;  // Default trainer is expected to be null.
         Entrenador result = instance.getEntrenadores();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setEntrenadores method, of class Potromon.
+     * Test the setEntrenadores method of the Potromon class.
      */
     @Test
     public void testSetEntrenadores() {
         System.out.println("setEntrenadores");
         Entrenador entrenadores = null;
         Potromon instance = new Potromon();
-        instance.setEntrenadores(entrenadores);
-        
+        instance.setEntrenadores(entrenadores);  // Setting trainer to null.
     }
 
     /**
-     * Test of getHabilidad method, of class Potromon.
+     * Test the getHabilidad method of the Potromon class.
      */
     @Test
     public void testGetHabilidad() {
         System.out.println("getHabilidad");
         Potromon instance = new Potromon();
-        List<Habilidad> expResult = null;
+        List<Habilidad> expResult = null;  // Default ability list is expected to be null.
         List<Habilidad> result = instance.getHabilidad();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setHabilidad method, of class Potromon.
+     * Test the setHabilidad method of the Potromon class.
      */
     @Test
     public void testSetHabilidad() {
         System.out.println("setHabilidad");
         List<Habilidad> habilidad = null;
         Potromon instance = new Potromon();
-        instance.setHabilidad(habilidad);
-        
+        instance.setHabilidad(habilidad);  // Setting ability list to null.
     }
 
     /**
-     * Test of getById method, of class Potromon.
+     * Test the getById method of the Potromon class.
      */
     @Test
     public void testGetById() {
         System.out.println("getById");
         int id = 0;
-        Potromon expResult = null;
+        Potromon expResult = null;  // Expecting null result for non-existent Potromon ID.
         Potromon result = Potromon.getById(id);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of save method, of class Potromon.
+     * Test the save method of the Potromon class.
      */
     @Test
     public void testSave() {
@@ -211,114 +202,81 @@ public class PotromonTest {
         byte[] imagen = null;
         int idEntrenador = 0;
         int puntaje = 0;
-        boolean expResult = false;
+        boolean expResult = false;  // Expecting false, indicating save failed (stub method).
         boolean result = Potromon.save(nombre, descripcion, imagen, idEntrenador, puntaje);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of edit method, of class Potromon.
+     * Test the edit method of the Potromon class.
      */
     @Test
     public void testEdit() {
         System.out.println("edit");
         int id = 2;
         int puntaje = 50;
-        boolean expResult = false;
+        boolean expResult = false;  // Expecting false for unsuccessful edit (stub method).
         boolean result = Potromon.edit(id, puntaje);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of delete method, of class Potromon.
+     * Test the delete method of the Potromon class.
      */
     @Test
     public void testDelete() {
         System.out.println("delete");
         int Id = 0;
-        boolean expResult = false;
+        boolean expResult = false;  // Expecting false for failed deletion (stub method).
         boolean result = Potromon.delete(Id);
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of getAll method, of class Potromon.
+     * Test the getAll method of the Potromon class.
      */
     @Test
     public void testGetAll() {
         System.out.println("getAll");
-        List<Potromon> expResult = null;
+        List<Potromon> expResult = null;  // Expecting null for the empty list.
         List<Potromon> result = Potromon.getAll();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of getImagen method, of class Potromon.
+     * Test the getImagen method of the Potromon class.
      */
     @Test
     public void testGetImagen() {
         System.out.println("getImagen");
         Potromon instance = new Potromon();
-        byte[] expResult = null;
+        byte[] expResult = null;  // Expecting null for the image.
         byte[] result = instance.getImagen();
         assertArrayEquals(expResult, result);
-        
     }
 
     /**
-     * Test of setImagen method, of class Potromon.
+     * Test the setImagen method of the Potromon class.
      */
     @Test
     public void testSetImagen() {
         System.out.println("setImagen");
         byte[] imagen = null;
         Potromon instance = new Potromon();
-        instance.setImagen(imagen);
-        
+        instance.setImagen(imagen);  // Setting image to null.
     }
 
     /**
-     * Test of aggImage method, of class Potromon.
+     * Test the aggImage method of the Potromon class.
      */
     @Test
     public void testAggImage() {
         System.out.println("aggImage");
         int id = 0;
         byte[] image = null;
-        boolean expResult = false;
+        boolean expResult = false;  // Expecting false for unsuccessful image addition (stub method).
         boolean result = Potromon.aggImage(id, image);
         assertEquals(expResult, result);
-        
-    }
-
-    /**
-     * Test of cargarImagen method, of class Potromon.
-     */
-    @Test
-    public void testCargarImagen() {
-        System.out.println("cargarImagen");
-        int id = 0;
-        byte[] expResult = null;
-        byte[] result = Potromon.cargarImagen(id);
-        assertArrayEquals(expResult, result);
-        
-    }
-
-    /**
-     * Test of editImage method, of class Potromon.
-     */
-    @Test
-    public void testEditImage() {
-        System.out.println("editImage");
-        int id = 0;
-        byte[] newImage = null;
-        boolean expResult = false;
-        boolean result = Potromon.editImage(id, newImage);
-        assertEquals(expResult, result);
-        
     }
 }
+

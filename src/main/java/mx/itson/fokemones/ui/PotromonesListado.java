@@ -246,8 +246,8 @@ public class PotromonesListado extends javax.swing.JFrame {
     }
 }
     
-private void configurarRenderizadorTabla() {
-    tblPotromones.getColumnModel().getColumn(3).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+        private void configurarRenderizadorTabla() {
+        tblPotromones.getColumnModel().getColumn(3).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
         @Override
         public Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             if (value instanceof ImageIcon) {
