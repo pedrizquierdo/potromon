@@ -53,6 +53,18 @@ public class Habilidad {
         return protomon;
     }
     
+    /**
+     * @param protomon the protomon to set
+     */
+    public void setProtomon(Potromon protomon) {
+        this.protomon = protomon;
+    }
+    private int id;
+    private String habilidad;
+    private Potromon protomon;
+    
+    
+    
     public static List<Habilidad> getList(int idPotromon) {
         List<Habilidad> habilidades = new ArrayList<>();
         try {
@@ -74,17 +86,6 @@ public class Habilidad {
         } return habilidades;
       
     }
-
-    /**
-     * @param protomon the protomon to set
-     */
-    public void setProtomon(Potromon protomon) {
-        this.protomon = protomon;
-    }
-    private int id;
-    private String habilidad;
-    private Potromon protomon;
-
     /**
      * Esta seccion de codigo se usa para poder seleccionar todo lo que este dentro de "Responsable"
      * En la base de datos
